@@ -1,2 +1,20 @@
-<div>Meditation Trainer</div>
-<router-outlet></router-outlet>
+<ul class="navbar">
+  <li class="navbar__list-item">
+    <a class="navbar__link"
+       routerLink="trainer"
+       routerLinkActive="active">Trainer</a>
+  </li>
+  <li class="navbar__list-item">
+    <a class="navbar__link"
+       routerLink="stats"
+       routerLinkActive="active">Stats</a>
+  </li>
+  <li class="navbar__list-item">
+    <a class="navbar__link"
+       routerLink="settings"
+       routerLinkActive="active">Settings</a>
+  </li>
+</ul>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

@@ -1,7 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { TrainerComponent } from './components/trainer/trainer.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'trainer',
+    component: TrainerComponent
+  },
+  {
+    path: 'stats',
+    component: TrainerComponent
+  },
+  {
+    path: 'settings',
+    component: TrainerComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
