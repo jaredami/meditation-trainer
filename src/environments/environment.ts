@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyBCcFWl9O1OzKtJ7o027_CB2tHDreFYuvI",
+    authDomain: "meditation-trainer-91d19.firebaseapp.com",
+    databaseURL: "https://meditation-trainer-91d19.firebaseio.com",
+    projectId: "meditation-trainer-91d19",
+    storageBucket: "",
+    messagingSenderId: "831252092971",
+    appId: "1:831252092971:web:27cf958e31b17a3fb8b26e",
+    measurementId: "G-4KJK7TS1D1"
+  }
 };
 
 /*
