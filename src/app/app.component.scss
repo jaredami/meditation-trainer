@@ -1,40 +1,56 @@
+@import './variables.scss';
+
+$border-radius-nav: 20px;
+
 body {margin: 0;}
 
 .navbar {
+  background-color: $color-dark-gray;
+  font-size: 2rem;
+  height: 100%;
   list-style-type: none;
   margin: 0;
-  padding: 0;
-  width: 25%;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
   overflow: auto;
+  padding: 0;
+  position: fixed;
+  width: 25%;
+  transition: all 100ms ease;
+}
+
+.navbar__icon {
+  padding-right: 0.5rem;
 }
 
 .navbar__link {
   display: block;
-  color: #000;
-  padding: 8px 16px;
+  color: $color-white;
+  padding: 1rem 1rem;
   text-decoration: none;
+  transition: all 100ms ease;
 }
  
 .navbar__link.active {
-  background-color: #4CAF50;
-  color: white;
+  background-color: $color-secondary-2-0;
+  color: $color-black;
+  border-top-left-radius: $border-radius-nav;
+  border-bottom-left-radius: $border-radius-nav;
 }
 
 .navbar__link:hover:not(.active) {
-  background-color: #555;
-  color: white;
+  background-color: $color-light-gray;
+  color: $color-black;
+  border-top-left-radius: $border-radius-nav;
+  border-bottom-left-radius: $border-radius-nav;
 }
 
-div.content {
+.content {
   margin-left: 25%;
-  padding: 1px 16px;
   height: 1000px;
+  border-top-right-radius: $border-radius-nav;
+  background: $color-secondary-2-0;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1170px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -44,14 +60,31 @@ div.content {
   .navbar__link {
     float: left;
     padding: 15px;
+    margin-right: 1rem;
   }
 
-  .content {margin-left: 0;}
+  .navbar__link.active, .navbar__link:hover:not(.active) {
+    border-top-right-radius: $border-radius-nav;
+    border-bottom-left-radius: 0px;
+  }
+
+  .content {
+    margin-left: 0;
+    border-top-left-radius: 0px;
+  }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .navbar__link {
     text-align: center;
     float: none;
+  }
+
+  .navbar__link.active, .navbar__link:hover:not(.active) {
+    border-radius: 0px;
+  }
+
+  .content {
+    border-radius: 0px;
   }
 }
