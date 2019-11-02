@@ -2,24 +2,26 @@
 
 .trainer {
   display: grid;
-  height: 50%;
+  place-items: center;
+  padding-top: 3rem;
+  height: 40%;
   font-size: 3rem;
 }
 
 .timer__container {
-  place-self: center;
   display: grid;
   place-items: center;
   background: $color-dark-gray;
   color: $color-white;
-  padding: 1rem 2rem;
-  // border: 4px solid $color-white;
+  padding: 1rem;
+  border: 0.5rem solid $color-secondary-2-4;
   border-radius: 1rem;
   box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  min-width: 300px;
 }
 
 .timer-container--session {
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
 }
 
 .timer__clock {

@@ -12,6 +12,7 @@ export class TrainerComponent implements OnInit {
   minutes = 0;
   currentMax = 10;
   startStreakTimer;
+  startSessionTimer;
   sessionStarted = false;
   seconds2 = 0;
   minutes2 = 20;
@@ -21,6 +22,7 @@ export class TrainerComponent implements OnInit {
   ngOnInit() {
 
     this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
+    this.startSessionTimer = setInterval(() => { this.subtractTime(); }, 1000);
   }
 
   addTime() {
@@ -39,6 +41,20 @@ export class TrainerComponent implements OnInit {
     } else {
       // BUG: doesn't hit this if currentMax is greater than 60
       clearInterval(this.startStreakTimer);
+    }
+  }
+
+  subtractTime() {
+    if (this.minutes2 > -1) {
+      this.seconds2--;
+      if (this.seconds2 <= 0) {
+        this.seconds2 = 59;
+        this.minutes2--;
+      }
+      this.sessionTimer =
+        (this.minutes2 ? (this.minutes2 > 9 ? this.minutes2 : '0' + this.minutes2) : '00') +
+        ':' +
+        (this.seconds2 > 9 ? this.seconds2 : '0' + this.seconds2);
     }
   }
 }
