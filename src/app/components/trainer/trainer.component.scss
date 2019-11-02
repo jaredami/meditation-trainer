@@ -1,6 +1,38 @@
 @import '../../variables.scss';
 
 .trainer {
-  width: 100%;
-  height: 100vh;
+  display: grid;
+  height: 50%;
+  font-size: 3rem;
+}
+
+.timer__container {
+  place-self: center;
+  display: grid;
+  place-items: center;
+  background: $color-dark-gray;
+  color: $color-white;
+  padding: 1rem 2rem;
+  // border: 4px solid $color-white;
+  border-radius: 1rem;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+}
+
+.timer-container--session {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.timer__clock {
+  text-align: center;
+}
+
+.timer__btn {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.period-clock {
+  font-size: 5rem;
+  grid-template-columns: 1fr;
+
 }
