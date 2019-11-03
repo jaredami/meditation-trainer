@@ -52,15 +52,15 @@
 }
 
 .circle__box {
-  width: 200px;
-  height: 200px;
+  width: 400px;
+  height: 400px;
   margin: 50px auto;
   position: relative;
 }
 
 .circle__wrapper {
-  width: 100px;
-  height: 200px;
+  width: 200px;
+  height: 400px;
   position: absolute;
   top: 0;
   overflow: hidden;
@@ -75,9 +75,9 @@
 }
 
 .circle__whole {
-  width: 160px;
-  height: 160px;
-  border: 20px solid transparent;
+  width: 320px;
+  height: 320px;
+  border: 40px solid transparent;
   border-radius: 50%;
   position: absolute;
   top: 0;
@@ -85,15 +85,15 @@
 }
 
 .circle__right {
-  border-top: 20px solid $color-dark-gray;
-  border-right: 20px solid $color-dark-gray;
+  border-top: 40px solid $color-dark-gray;
+  border-right: 40px solid $color-dark-gray;
   right: 1px;
   animation: --circle-animation;
 }
 
 .circle__left {
-  border-bottom: 20px solid $color-dark-gray;
-  border-left: 20px solid $color-dark-gray;
+  border-bottom: 40px solid $color-dark-gray;
+  border-left: 40px solid $color-dark-gray;
   left: 1px;
 }
 
