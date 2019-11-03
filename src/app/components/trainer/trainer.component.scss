@@ -4,8 +4,12 @@
   display: grid;
   place-items: center;
   padding-top: 3rem;
-  height: 40%;
   font-size: 3rem;
+}
+
+.trainer__text {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 2rem;
 }
 
 .timer__container {
@@ -29,6 +33,15 @@
 }
 
 .timer__btn {
+ background: transparent;
+ color: $color-white;
+ border: none;
+ &:focus {
+   outline: none;
+ }
+}
+
+.timer__btn-icon {
   font-size: 3rem;
   cursor: pointer;
 }
