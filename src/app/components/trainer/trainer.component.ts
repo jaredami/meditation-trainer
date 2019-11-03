@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class TrainerComponent implements OnInit {
   currentStreakTimer = '0';
-  sessionTimer = '5:00';
+  sessionTimer = '--:--';
   seconds = 0;
   minutes = 0;
   currentMax = 10;
@@ -23,8 +23,8 @@ export class TrainerComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    // this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
-    // this.startSessionTimer = setInterval(() => { this.subtractTime(); }, 1000);
+    this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
+    this.startSessionTimer = setInterval(() => { this.subtractTime(); }, 1000);
   }
 
   increaseSessionLength() {
