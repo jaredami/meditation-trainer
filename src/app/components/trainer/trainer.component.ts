@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-trainer',
@@ -17,11 +18,13 @@ export class TrainerComponent implements OnInit {
   seconds2 = 0;
   minutes2 = 20;
 
-  constructor() { }
+  circleAnimationDuration = 5;
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
-    this.startSessionTimer = setInterval(() => { this.subtractTime(); }, 1000);
+    // this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
+    // this.startSessionTimer = setInterval(() => { this.subtractTime(); }, 1000);
   }
 
   increaseSessionLength() {

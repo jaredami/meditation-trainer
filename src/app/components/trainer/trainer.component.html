@@ -13,4 +13,17 @@
     </button>
   </div>
   <p class="trainer__text">Session</p>
+
+  <div class="circle__box">
+    <div class="circle__wrapper circle__wrapper--right">
+      <div class="circle__whole circle__right" 
+           [ngStyle]="{ 'animation': 'circleRight ' + circleAnimationDuration + 's linear forwards' }">
+      </div>
+    </div>
+    <div class="circle__wrapper circle__wrapper--left">
+      <div class="circle__whole circle__left" 
+           [ngStyle]="{ 'animation': 'circleLeft ' + circleAnimationDuration + 's linear forwards' }">
+      </div>
+    </div>
+  </div>
 </div>
