@@ -1,5 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-trainer',
@@ -11,16 +10,16 @@ export class TrainerComponent implements OnInit {
   sessionTimer = '--:--';
   seconds = 0;
   minutes = 0;
-  currentMax = 10;
+  currentMax = 5;
   startStreakTimer;
   startSessionTimer;
   sessionStarted = false;
   seconds2 = 0;
   minutes2 = 20;
+  periodComplete = false;
+  circleAnimationStarted = true;
 
-  circleAnimationDuration = 5;
-
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor() {}
 
   ngOnInit() {
     this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
@@ -28,15 +27,28 @@ export class TrainerComponent implements OnInit {
   }
 
   increaseSessionLength() {
-    this.minutes2 = this.minutes2 + 1;
+    this.minutes2++;
   }
 
   decreaseSessionLength() {
-    this.minutes2 = this.minutes2 - 1;
+    this.minutes2--;
+  }
+
+  handleSuccessFailClick(success: boolean) {
+    success ? this.currentMax++ : this.currentMax--;
+
+    // reset circle animation
+    this.circleAnimationStarted = false;
+    setTimeout(() => {
+      this.seconds = 0;
+      this.periodComplete = false;
+      this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
+      this.circleAnimationStarted = true;
+    }, 100);
   }
 
   private addTime() {
-    if (this.seconds < this.currentMax) {
+    if (this.seconds < this.currentMax - 1) {
       this.seconds++;
       if (this.seconds >= 60) {
         this.seconds = 0;
@@ -48,6 +60,7 @@ export class TrainerComponent implements OnInit {
         (this.seconds > 9 ? this.seconds : '0' + this.seconds);
     } else {
       // BUG: doesn't hit this if currentMax is greater than 60
+      this.periodComplete = true;
       clearInterval(this.startStreakTimer);
     }
   }

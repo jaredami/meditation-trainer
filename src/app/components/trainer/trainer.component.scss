@@ -1,5 +1,9 @@
 @import '../../variables.scss';
 
+.fade-in {
+  animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
 .trainer {
   max-width: 700px;
   margin: 0 auto;
@@ -21,6 +25,7 @@
   border-radius: 50%;
   box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
   cursor: pointer;
+  transition: opacity 500ms ease;
 
   &:hover {
     animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
@@ -150,5 +155,14 @@
   }
   100% {
             transform: scale(1.1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
