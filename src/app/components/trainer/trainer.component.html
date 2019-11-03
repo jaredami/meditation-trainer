@@ -1,10 +1,14 @@
 <div class="trainer">
+  <button class="success-fail-btn">
+    <i class="success-fail-btn__icon material-icons">clear</i>
+  </button>
   <div class="circle__box">
     <div class="circle__wrapper circle__wrapper--right">
       <div class="circle__whole circle__right" 
            [ngStyle]="{ 'animation': 'circleRight ' + circleAnimationDuration + 's linear forwards' }">
       </div>
     </div>
+
     <div class="timer__container timer-container--session">
       <button class="timer__btn" (click)="decreaseSessionLength()">
         <i class="timer__btn-icon material-icons">remove_circle_outline</i>
@@ -14,12 +18,16 @@
         <i class="timer__btn-icon material-icons">add_circle_outline</i>
       </button>
     </div>
+
     <div class="circle__wrapper circle__wrapper--left">
       <div class="circle__whole circle__left" 
            [ngStyle]="{ 'animation': 'circleLeft ' + circleAnimationDuration + 's linear forwards' }">
       </div>
     </div>
   </div>
+  <button class="success-fail-btn">
+    <i class="success-fail-btn__icon material-icons">check</i>
+  </button>
 
   <!-- <div class="timer__container">
     <div class="period-clock">{{ currentStreakTimer }}</div>

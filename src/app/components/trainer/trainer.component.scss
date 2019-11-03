@@ -1,10 +1,35 @@
 @import '../../variables.scss';
 
 .trainer {
-  // display: grid;
-  // place-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
   padding-top: 3rem;
   font-size: 3rem;
+  text-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+}
+
+.success-fail-btn {
+  width: 7rem;
+  height: 7rem;
+  background: $color-dark-gray;
+  color: $color-white;
+  padding: 1rem;
+  border: 0.5rem solid $color-secondary-2-4;
+  border-radius: 50%;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  cursor: pointer;
+
+  &:hover {
+    animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  }
+}
+
+.success-fail-btn__icon {
+  font-size: 4rem;
+  font-weight: 800;
 }
 
 .trainer__text {
@@ -40,9 +65,6 @@
  background: transparent;
  color: $color-white;
  border: none;
- &:focus {
-   outline: none;
- }
 }
 
 .timer__btn-icon {
@@ -119,5 +141,14 @@
   }
   100% {
     -webkit-transform: rotate(45deg);
+  }
+}
+
+@keyframes scale-up-center {
+  0% {
+            transform: scale(1);
+  }
+  100% {
+            transform: scale(1.1);
   }
 }
