@@ -1,8 +1,8 @@
 @import './app/variables.scss';
 
 html {
-  font-family: 'Ubuntu', sans-serif;
   background: $color-dark-gray;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 button:focus {

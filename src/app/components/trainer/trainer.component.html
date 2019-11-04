@@ -7,7 +7,10 @@
   <div class="circle__box">
     <div class="circle__wrapper circle__wrapper--right">
       <div class="circle__whole circle__right" 
-           [ngStyle]="{ 'animation': 'circleRight ' + currentMax + 's linear forwards' }"
+           [ngStyle]="{
+             'animation': ('circleRight ' + currentMax + 's linear forwards'),
+             'box-shadow': periodComplete ? 'inset 0px 20px 50px #FF864F' : ''
+            }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>
@@ -20,11 +23,15 @@
       <button class="timer__btn" (click)="increaseSessionLength()">
         <i class="timer__btn-icon material-icons">add_circle_outline</i>
       </button>
+      <!-- <div class="timer-clock">{{ currentStreakTimer }}</div> -->
     </div>
 
     <div class="circle__wrapper circle__wrapper--left">
       <div class="circle__whole circle__left" 
-           [ngStyle]="{ 'animation': 'circleLeft ' + currentMax + 's linear forwards' }"
+           [ngStyle]="{
+             'animation': 'circleLeft ' + currentMax + 's linear forwards',
+             'box-shadow': periodComplete ? 'inset 0px 20px 50px #FF864F' : ''
+            }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>

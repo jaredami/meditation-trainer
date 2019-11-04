@@ -5,27 +5,27 @@
 }
 
 .trainer {
-  max-width: 700px;
-  margin: 0 auto;
   display: grid;
-  place-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding-top: 3rem;
   font-size: 3rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 auto;
+  max-width: 700px;
+  padding-top: 3rem;
+  place-items: center;
   text-shadow: 2px 5px 5px rgba(0,0,0,0.3);
 }
 
 .success-fail-btn {
-  width: 7rem;
-  height: 7rem;
   background: $color-dark-gray;
-  color: $color-white;
-  padding: 1rem;
   border: 0.5rem solid $color-secondary-2-4;
   border-radius: 50%;
   box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  color: $color-white;
   cursor: pointer;
+  height: 7rem;
+  padding: 1rem;
   transition: opacity 500ms ease;
+  width: 7rem;
 
   &:hover {
     animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
@@ -43,22 +43,22 @@
 }
 
 .timer__container {
-  display: grid;
-  place-items: center;
   background: $color-dark-gray;
-  color: $color-white;
-  padding: 1rem;
   border: 0.5rem solid $color-secondary-2-4;
   border-radius: 1rem;
   box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  color: $color-white;
+  display: grid;
+  padding: 1rem;
+  place-items: center;
   width: 300px;
 }
 
 .timer-container--session {
   grid-template-columns: 1fr 2fr 1fr;
+  left: 24px;
   position: absolute;
   top: 140px;
-  left: 24px;
   z-index: 1000;
 }
 
@@ -68,13 +68,13 @@
 
 .timer__btn {
  background: transparent;
- color: $color-white;
  border: none;
+ color: $color-white;
 }
 
 .timer__btn-icon {
-  font-size: 3rem;
   cursor: pointer;
+  font-size: 3rem;
 }
 
 .period-clock {
@@ -83,18 +83,18 @@
 }
 
 .circle__box {
-  width: 400px;
   height: 400px;
   margin: 50px auto;
   position: relative;
+  width: 400px;
 }
 
 .circle__wrapper {
-  width: 200px;
   height: 400px;
+  overflow: hidden;
   position: absolute;
   top: 0;
-  overflow: hidden;
+  width: 200px;
 }
 
 .circle__wrapper--right {
@@ -106,19 +106,19 @@
 }
 
 .circle__whole {
-  width: 320px;
-  height: 320px;
   border: 40px solid transparent;
   border-radius: 50%;
+  // box-shadow: inset 0px 20px 50px $color-complement-0;
+  height: 320px;
   position: absolute;
   top: 0;
   transform: rotate(-135deg);
-  // box-shadow: inset 0px 20px 50px $color-complement-0;
+  width: 320px;
 }
 
 .circle__right {
-  border-top: 40px solid $color-dark-gray;
   border-right: 40px solid $color-dark-gray;
+  border-top: 40px solid $color-dark-gray;
   right: 1px;
   animation: --circle-animation;
 }
@@ -145,16 +145,16 @@
     transform: rotate(-135deg);
   }
   100% {
-    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
   }
 }
 
 @keyframes scale-up-center {
   0% {
-            transform: scale(1);
+    transform: scale(1);
   }
   100% {
-            transform: scale(1.1);
+    transform: scale(1.1);
   }
 }
 

@@ -2,7 +2,9 @@
 
 $border-radius-nav: 20px;
 
-body {margin: 0;}
+body {
+  margin: 0;
+}
 
 .navbar {
   // background-color: $color-dark-gray;
@@ -22,8 +24,8 @@ body {margin: 0;}
 }
 
 .navbar__link {
-  display: block;
   color: $color-white;
+  display: block;
   padding: 1rem 1rem;
   text-decoration: none;
   transition: all 100ms ease;
@@ -31,56 +33,56 @@ body {margin: 0;}
  
 .navbar__link.active {
   background-color: $color-secondary-2-0;
-  color: $color-black;
-  border-top-left-radius: $border-radius-nav;
   border-bottom-left-radius: $border-radius-nav;
+  border-top-left-radius: $border-radius-nav;
+  color: $color-black;
 }
 
 .navbar__link:hover:not(.active) {
   background-color: $color-light-gray;
-  color: $color-black;
   border-top-left-radius: $border-radius-nav;
   border-bottom-left-radius: $border-radius-nav;
+  color: $color-black;
 }
 
 .content {
-  margin-left: 20%;
-  height: 1000px;
-  border-top-right-radius: $border-radius-nav;
   background: $color-secondary-2-0;
   // background: linear-gradient(325deg, rgba(255,213,175,1) 0%, rgba(255,156,68,1) 100%);
+  border-top-right-radius: $border-radius-nav;
   font-family: 'Nova Mono', monospace;
+  height: 1000px;
+  margin-left: 20%;
 }
 
 
 @media screen and (max-width: 1170px) {
   .navbar {
-    width: 100%;
     height: auto;
     position: relative;
+    width: 100%;
   }
   
   .navbar__link {
     float: left;
-    padding: 15px;
     margin-right: 1rem;
+    padding: 15px;
   }
 
   .navbar__link.active, .navbar__link:hover:not(.active) {
-    border-top-right-radius: $border-radius-nav;
     border-bottom-left-radius: 0px;
+    border-top-right-radius: $border-radius-nav;
   }
 
   .content {
-    margin-left: 0;
     border-top-left-radius: 0px;
+    margin-left: 0;
   }
 }
 
 @media screen and (max-width: 600px) {
   .navbar__link {
-    text-align: center;
     float: none;
+    text-align: center;
   }
 
   .navbar__link.active, .navbar__link:hover:not(.active) {
