@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trainer.component.scss']
 })
 export class TrainerComponent implements OnInit {
-  currentStreakTimer = '0';
+  currentStreakTimer = '--:--';
   sessionTimer = '--:--';
   seconds = 0;
   minutes = 0;
@@ -48,7 +48,7 @@ export class TrainerComponent implements OnInit {
   }
 
   private addTime() {
-    if (this.seconds < this.currentMax - 1) {
+    if (this.seconds < this.currentMax) {
       this.seconds++;
       if (this.seconds >= 60) {
         this.seconds = 0;

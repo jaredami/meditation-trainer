@@ -43,23 +43,27 @@
 }
 
 .timer__container {
-  background: $color-dark-gray;
-  border: 0.5rem solid $color-secondary-2-4;
-  border-radius: 1rem;
-  box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
   color: $color-white;
   display: grid;
   padding: 1rem;
   place-items: center;
-  width: 300px;
+  z-index: 1000;
 }
 
 .timer-container--session {
+  background: $color-dark-gray;
+  border: 0.5rem solid $color-secondary-2-4;
+  border-radius: 1rem;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
   grid-template-columns: 1fr 2fr 1fr;
-  left: 24px;
+  width: 300px;
+}
+
+.timer-container--period {
+  left: 92px;
   position: absolute;
-  top: 140px;
-  z-index: 1000;
+  top: 138px;
+  font-size: 4rem;
 }
 
 .timer__clock {
@@ -108,7 +112,6 @@
 .circle__whole {
   border: 40px solid transparent;
   border-radius: 50%;
-  // box-shadow: inset 0px 20px 50px $color-complement-0;
   height: 320px;
   position: absolute;
   top: 0;
