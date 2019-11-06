@@ -28,7 +28,7 @@
   width: 7rem;
 
   &:hover {
-    animation: scale-up-center 0.1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   }
 }
 
@@ -72,13 +72,19 @@
 
 .timer__btn {
  background: transparent;
- border: none;
+ border: 0.3rem solid $color-secondary-2-4;
+ border-radius: 50%;
  color: $color-white;
+ padding: 5px;
+
+ &:hover {
+   filter: brightness(130%);
+ }
 }
 
 .timer__btn-icon {
   cursor: pointer;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .period-clock {
