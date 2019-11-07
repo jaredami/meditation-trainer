@@ -32,10 +32,12 @@ body {
 }
  
 .navbar__link.active {
-  background-color: $color-secondary-2-0;
+  background-color: $color-dark-gray;
+  // background-color: $color-secondary-2-0;
   border-bottom-left-radius: $border-radius-nav;
   border-top-left-radius: $border-radius-nav;
-  color: $color-black;
+  color: $color-white;
+  // color: $color-black;
 }
 
 .navbar__link:hover:not(.active) {
@@ -46,7 +48,7 @@ body {
 }
 
 .content {
-  background: $color-secondary-2-0;
+  background: $color-dark-gray;
   // background: linear-gradient(325deg, rgba(255,213,175,1) 0%, rgba(255,156,68,1) 100%);
   border-top-right-radius: $border-radius-nav;
   font-family: 'Nova Mono', monospace;

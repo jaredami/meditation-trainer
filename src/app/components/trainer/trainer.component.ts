@@ -7,31 +7,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainerComponent implements OnInit {
   currentStreakTimer = '--:--';
-  sessionTimer = '--:--';
-  seconds = 0;
-  minutes = 0;
   currentMax = 5;
+  periodSeconds = 0;
+  periodMinutes = 0;
+  periodComplete = false;
+  sessionStarted = false;
+  sessionSeconds = 0;
+  sessionMinutes = 20;
+  sessionTimer = '--:--';
   startStreakTimer;
   startSessionTimer;
-  sessionStarted = false;
-  seconds2 = 0;
-  minutes2 = 20;
-  periodComplete = false;
   circleAnimationStarted = true;
 
   constructor() {}
 
   ngOnInit() {
-    this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
-    this.startSessionTimer = setInterval(() => { this.subtractTime(); }, 1000);
+
   }
 
   increaseSessionLength() {
-    this.minutes2++;
+    this.sessionMinutes++;
   }
 
   decreaseSessionLength() {
-    this.minutes2--;
+    this.sessionMinutes--;
   }
 
   handleSuccessFailClick(success: boolean) {
@@ -40,24 +39,30 @@ export class TrainerComponent implements OnInit {
     // reset circle animation
     this.circleAnimationStarted = false;
     setTimeout(() => {
-      this.seconds = 0;
+      this.periodSeconds = 0;
       this.periodComplete = false;
-      this.startStreakTimer = setInterval(() => { this.addTime(); }, 1000);
+      this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
       this.circleAnimationStarted = true;
     }, 100);
   }
 
-  private addTime() {
-    if (this.seconds < this.currentMax) {
-      this.seconds++;
-      if (this.seconds >= 60) {
-        this.seconds = 0;
-        this.minutes++;
+  startSession() {
+    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
+    this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
+    this.sessionStarted = true;
+  }
+
+  private addPeriodTime() {
+    if (this.periodSeconds < this.currentMax) {
+      this.periodSeconds++;
+      if (this.periodSeconds >= 60) {
+        this.periodSeconds = 0;
+        this.periodMinutes++;
       }
       this.currentStreakTimer =
-        (this.minutes ? (this.minutes > 9 ? this.minutes : '0' + this.minutes) : '00') +
+        (this.periodMinutes ? (this.periodMinutes > 9 ? this.periodMinutes : '0' + this.periodMinutes) : '00') +
         ':' +
-        (this.seconds > 9 ? this.seconds : '0' + this.seconds);
+        (this.periodSeconds > 9 ? this.periodSeconds : '0' + this.periodSeconds);
     } else {
       // BUG: doesn't hit this if currentMax is greater than 60
       this.periodComplete = true;
@@ -65,17 +70,17 @@ export class TrainerComponent implements OnInit {
     }
   }
 
-  private subtractTime() {
-    if (this.minutes2 > -1) {
-      this.seconds2--;
-      if (this.seconds2 <= 0) {
-        this.seconds2 = 59;
-        this.minutes2--;
+  private subtractSessionTime() {
+    if (this.sessionMinutes > -1) {
+      this.sessionSeconds--;
+      if (this.sessionSeconds <= 0) {
+        this.sessionSeconds = 59;
+        this.sessionMinutes--;
       }
       this.sessionTimer =
-        (this.minutes2 ? (this.minutes2 > 9 ? this.minutes2 : '0' + this.minutes2) : '00') +
+        (this.sessionMinutes ? (this.sessionMinutes > 9 ? this.sessionMinutes : '0' + this.sessionMinutes) : '00') +
         ':' +
-        (this.seconds2 > 9 ? this.seconds2 : '0' + this.seconds2);
+        (this.sessionSeconds > 9 ? this.sessionSeconds : '0' + this.sessionSeconds);
     }
   }
 }

@@ -4,34 +4,22 @@
           (click)="handleSuccessFailClick(false)">
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
-  <div class="circle__box">
+  <button class="trainer__begin fade-in" (click)="startSession()" *ngIf="!sessionStarted">BEGIN</button>
+  <div class="circle__box" *ngIf="sessionStarted">
     <div class="circle__wrapper circle__wrapper--right">
       <div class="circle__whole circle__right" 
-           [ngStyle]="{
-             'animation': ('circleRight ' + currentMax + 's linear forwards'),
-             'box-shadow': periodComplete ? 'inset 0px 20px 50px #FF864F' : ''
-            }"
+           [ngStyle]="{ 'animation': ('circleRight ' + currentMax + 's linear forwards') }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>
 
     <div class="timer__container timer-container--period">
-      <!-- <button class="timer__btn" (click)="decreaseSessionLength()">
-        <i class="timer__btn-icon material-icons">remove_circle_outline</i>
-      </button>
-      <div class="timer__clock">{{ sessionTimer }}</div>
-      <button class="timer__btn" (click)="increaseSessionLength()">
-        <i class="timer__btn-icon material-icons">add_circle_outline</i>
-      </button> -->
       <div class="timer-clock">{{ currentStreakTimer }}</div>
     </div>
 
     <div class="circle__wrapper circle__wrapper--left">
       <div class="circle__whole circle__left" 
-           [ngStyle]="{
-             'animation': 'circleLeft ' + currentMax + 's linear forwards',
-             'box-shadow': periodComplete ? 'inset 0px 20px 50px #FF864F' : ''
-            }"
+           [ngStyle]="{ 'animation': 'circleLeft ' + currentMax + 's linear forwards' }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>
@@ -53,5 +41,4 @@
     </button>
   </div>
   <div></div>
-  <!-- <p class="trainer__text">Session</p> -->
 </div>
