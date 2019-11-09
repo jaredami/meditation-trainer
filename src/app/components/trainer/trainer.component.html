@@ -1,41 +1,45 @@
 <div class="trainer">
-  <button [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }" 
-          class="success-fail-btn"
+  <button class="success-fail-btn"
+          [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }"
           (click)="handleSuccessFailClick(false)">
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
-  <button class="trainer__begin fade-in" (click)="startSession()" *ngIf="!sessionStarted">BEGIN</button>
-  <div class="circle__box" *ngIf="sessionStarted">
+  <button class="trainer__begin fade-in" (click)="startSession()" *ngIf="!sessionStarted">
+    BEGIN
+  </button>
+  <div class="circle__box fade-in" *ngIf="sessionStarted">
     <div class="circle__wrapper circle__wrapper--right">
-      <div class="circle__whole circle__right" 
+      <div class="circle__whole circle__right"
            [ngStyle]="{ 'animation': ('circleRight ' + currentMax + 's linear forwards') }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>
-
     <div class="timer__container timer-container--period">
-      <div class="timer-clock">{{ currentStreakTimer }}</div>
+      <div class="timer-clock">
+        {{ currentStreakTimer }}
+      </div>
     </div>
-
     <div class="circle__wrapper circle__wrapper--left">
-      <div class="circle__whole circle__left" 
+      <div class="circle__whole circle__left"
            [ngStyle]="{ 'animation': 'circleLeft ' + currentMax + 's linear forwards' }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>
   </div>
-  <button [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }"
-          class="success-fail-btn"
+  <button class="success-fail-btn"
+          [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }"
           (click)="handleSuccessFailClick(true)">
     <i class="success-fail-btn__icon material-icons">check</i>
   </button>
 
   <div></div>
-  <div class="timer__container timer-container--session">
+  <div class="timer__container timer-container--session fade-in" *ngIf="sessionStarted">
     <button class="timer__btn" (click)="decreaseSessionLength()">
       <i class="timer__btn-icon material-icons">remove</i>
     </button>
-    <div class="timer__clock">{{ sessionTimer }}</div>
+    <div class="timer__clock">
+      {{ sessionTimer }}
+    </div>
     <button class="timer__btn" (click)="increaseSessionLength()">
       <i class="timer__btn-icon material-icons">add</i>
     </button>

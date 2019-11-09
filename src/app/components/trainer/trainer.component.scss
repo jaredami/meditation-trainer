@@ -1,7 +1,7 @@
 @import '../../variables.scss';
 
 .fade-in {
-  animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: fade-in 3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 .trainer {
@@ -11,7 +11,7 @@
   grid-template-rows: 500px 200px;
   margin: 0 auto;
   max-width: 700px;
-  padding-top: 3rem;
+  padding-top: 4rem;
   place-items: center;
   text-shadow: 2px 5px 5px rgba(0,0,0,0.3);
 }
@@ -22,8 +22,11 @@
   color: $color-white;
   font-family: inherit;
   font-size: 10rem;
+  text-shadow: 0 0 10px $color-dark-gray, 0 0 50px $color-black;
+  transition: transform 500ms ease;
   &:hover {
     cursor: pointer;
+    transform: scale(1.05);
   }
 }
 
@@ -40,8 +43,7 @@
   width: 7rem;
 
   &:hover {
-    background: $color-light-gray;
-    color: $color-black;
+    filter: brightness(110%);
     animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   }
 }
@@ -61,9 +63,8 @@
 
 .timer-container--session {
   background: $color-dark-gray;
-  // border: 0.5rem double $color-primary-0;
+  border: 0.5rem double $color-primary-0;
   border-radius: 1rem;
-  // box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
   grid-template-columns: 1fr 2fr 1fr;
   width: 300px;
 }
@@ -87,7 +88,8 @@
  padding: 5px;
 
  &:hover {
-   filter: brightness(130%);
+  filter: brightness(110%);
+  animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
  }
 }
 
@@ -172,7 +174,7 @@
     transform: scale(1);
   }
   100% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 
