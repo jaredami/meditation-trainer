@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { StatsComponent } from './components/stats/stats.component';
 import { TrainerComponent } from './components/trainer/trainer.component';
 
 const routes: Routes = [
@@ -9,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'stats',
-    component: TrainerComponent
+    component: StatsComponent
   },
   {
     path: 'settings',

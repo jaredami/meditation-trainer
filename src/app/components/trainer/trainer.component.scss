@@ -6,6 +6,7 @@
 
 .trainer {
   display: grid;
+  font-family: $font-nova;
   font-size: 3rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 500px 200px;
