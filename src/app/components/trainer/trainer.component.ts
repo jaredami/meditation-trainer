@@ -7,18 +7,20 @@ import { StatsService } from 'src/app/services/stats.service';
   styleUrls: ['./trainer.component.scss']
 })
 export class TrainerComponent implements OnInit {
+  circleAnimationStarted = true;
   currentPeriodTimer = '--:--';
   currentMax = 5;
   periodSeconds = 0;
   periodMinutes = 0;
   periodComplete = false;
+  startPeriodTimer;
+
   sessionStarted = false;
+  sessionEnded = false;
   sessionSeconds = 0;
   sessionMinutes = 3;
   sessionTimer = '--:--';
-  startPeriodTimer;
   startSessionTimer;
-  circleAnimationStarted = true;
 
   constructor(private statsService: StatsService) {}
 
@@ -79,6 +81,7 @@ export class TrainerComponent implements OnInit {
       this.sessionSeconds--;
       if (this.sessionSeconds <= 0) {
         if (this.sessionMinutes === 0) {
+          this.sessionEnded = true;
           clearInterval(this.startSessionTimer);
           this.statsService.addCompletedSession();
         } else {
@@ -96,6 +99,8 @@ export class TrainerComponent implements OnInit {
   }
 
   private resetValues() {
+    this.currentMax = 5;
+    this.sessionEnded = false;
     this.sessionMinutes = 3;
     this.sessionSeconds = 0;
   }

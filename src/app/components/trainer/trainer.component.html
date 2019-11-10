@@ -47,6 +47,10 @@
   <div></div>
 
   <div></div>
-  <button class="success-fail-btn" (click)="startSession()">Start New Session</button>
+  <button class="success-fail-btn"
+          (click)="startSession()"
+          *ngIf="sessionEnded">
+    Start New Session
+  </button>
   <div></div>
 </div>
