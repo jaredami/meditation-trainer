@@ -7,7 +7,7 @@ import { StatsService } from 'src/app/services/stats.service';
   styleUrls: ['./trainer.component.scss']
 })
 export class TrainerComponent implements OnInit {
-  currentStreakTimer = '--:--';
+  currentPeriodTimer = '--:--';
   currentMax = 5;
   periodSeconds = 0;
   periodMinutes = 0;
@@ -16,7 +16,7 @@ export class TrainerComponent implements OnInit {
   sessionSeconds = 0;
   sessionMinutes = 3;
   sessionTimer = '--:--';
-  startStreakTimer;
+  startPeriodTimer;
   startSessionTimer;
   circleAnimationStarted = true;
 
@@ -42,7 +42,7 @@ export class TrainerComponent implements OnInit {
     setTimeout(() => {
       this.periodSeconds = 0;
       this.periodComplete = false;
-      this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
+      this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
       this.circleAnimationStarted = true;
     }, 100);
   }
@@ -50,9 +50,9 @@ export class TrainerComponent implements OnInit {
   startSession() {
     this.resetValues();
     this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 100);
-    this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 100);
+    this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 100);
     // this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
-    // this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
+    // this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
     this.sessionStarted = true;
   }
 
@@ -63,14 +63,14 @@ export class TrainerComponent implements OnInit {
         this.periodSeconds = 0;
         this.periodMinutes++;
       }
-      this.currentStreakTimer =
+      this.currentPeriodTimer =
         (this.periodMinutes ? (this.periodMinutes > 9 ? this.periodMinutes : '0' + this.periodMinutes) : '00') +
         ':' +
         (this.periodSeconds > 9 ? this.periodSeconds : '0' + this.periodSeconds);
     } else {
       // BUG: doesn't hit this if currentMax is greater than 60
       this.periodComplete = true;
-      clearInterval(this.startStreakTimer);
+      clearInterval(this.startPeriodTimer);
     }
   }
 
