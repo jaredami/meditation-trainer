@@ -1,0 +1,70 @@
+@import '../../variables.scss';
+
+.navbar {
+  font-size: 2rem;
+  height: 100%;
+  list-style-type: none;
+  letter-spacing: $letter-spacing;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+  position: fixed;
+  width: 20%;
+  transition: all 100ms ease;
+}
+
+.navbar__icon {
+  padding-right: 0.5rem;
+}
+
+.navbar__link {
+  color: $color-white;
+  display: block;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  transition: all 100ms ease;
+}
+ 
+.navbar__link.active {
+  background-color: $color-dark-gray;
+  border-bottom-left-radius: $border-radius-nav;
+  border-top-left-radius: $border-radius-nav;
+  color: $color-white;
+}
+
+.navbar__link:hover:not(.active) {
+  background-color: $color-light-gray;
+  border-top-left-radius: $border-radius-nav;
+  border-bottom-left-radius: $border-radius-nav;
+  color: $color-black;
+}
+
+@media screen and (max-width: 1170px) {
+  .navbar {
+    height: auto;
+    position: relative;
+    width: 100%;
+  }
+  
+  .navbar__link {
+    float: left;
+    margin-right: 1rem;
+    padding: 15px;
+  }
+
+  .navbar__link.active, .navbar__link:hover:not(.active) {
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: $border-radius-nav;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar__link {
+    float: none;
+    text-align: center;
+  }
+
+  .navbar__link.active, .navbar__link:hover:not(.active) {
+    border-radius: 0px;
+  }
+}
