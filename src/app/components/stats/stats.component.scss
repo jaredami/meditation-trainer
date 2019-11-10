@@ -1,25 +1,42 @@
 @import '../../variables.scss';
 
 .stats {
+  display: relative;
+  letter-spacing: 2px;
+  margin: 0 auto;
   padding-top: 4rem;
+  text-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  width: 42vw;
 }
 
 .stats-list {
-  font-size: 2.5rem;
+  border: 0.5rem solid $color-primary-0;
+  border-radius: 0.5rem;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  font-size: 2rem;
   list-style-type: none;
-  margin-left: 5rem;
+  padding: 2rem 1rem;
   text-align: end;
-  width: 50vw;
 }
 
 .stats-list__item {
+  border-radius: 0.5rem;
   color: $color-white;
-  margin-bottom: 2rem;
   display: grid;
   grid-template-columns: 5fr 1fr;
+  padding: 1rem 2rem;
+}
+
+.stats-list__item:nth-child(even) {
+  background: lighten($color-dark-gray, 10%);
+}
+
+.stats-list__label {
+  line-height: 1.4;
 }
 
 .stats-list__figure {
   color: $color-primary-0;
   font-family: $font-nova;
+  vertical-align: middle;
 }
