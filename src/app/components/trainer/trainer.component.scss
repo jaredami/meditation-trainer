@@ -1,7 +1,7 @@
 @import '../../variables.scss';
 
 .fade-in {
-  animation: fade-in 3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  animation: fade-in 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 .trainer {
@@ -64,7 +64,7 @@
 
 .timer-container--session {
   background: $color-dark-gray;
-  border: 0.5rem double $color-primary-0;
+  border: 0.5rem solid $color-primary-0;
   border-radius: 1rem;
   grid-template-columns: 1fr 2fr 1fr;
   width: 300px;
@@ -148,6 +148,26 @@
   border-bottom: 40px solid $color-primary-0;
   border-left: 40px solid $color-primary-0;
   left: 1px;
+}
+
+.trainer__new-session-btn {
+  background: inherit;
+  border: 0.5rem solid $color-primary-0;
+  border-radius: 1rem;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  color: $color-white;
+  cursor: pointer;
+  font-family: $font-nova;
+  font-size: 1.5rem;
+  height: 7rem;
+  padding: 1rem;
+  transition: opacity 500ms ease;
+  width: 300px;
+
+  &:hover {
+    filter: brightness(110%);
+    animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  }
 }
 
 @keyframes circleRight {

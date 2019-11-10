@@ -22,6 +22,8 @@ export class TrainerComponent implements OnInit {
   sessionTimer = '--:--';
   startSessionTimer;
 
+  firstSessionStarted = false;
+
   constructor(private statsService: StatsService) {}
 
   ngOnInit() {
@@ -50,11 +52,10 @@ export class TrainerComponent implements OnInit {
   }
 
   startSession() {
+    this.firstSessionStarted = true;
     this.resetValues();
-    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 100);
-    this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 100);
-    // this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
-    // this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
+    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
+    this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
     this.sessionStarted = true;
   }
 
@@ -81,7 +82,9 @@ export class TrainerComponent implements OnInit {
       this.sessionSeconds--;
       if (this.sessionSeconds <= 0) {
         if (this.sessionMinutes === 0) {
+          this.sessionStarted = false;
           this.sessionEnded = true;
+          clearInterval(this.startPeriodTimer);
           clearInterval(this.startSessionTimer);
           this.statsService.addCompletedSession();
         } else {
@@ -99,9 +102,17 @@ export class TrainerComponent implements OnInit {
   }
 
   private resetValues() {
+    this.circleAnimationStarted = true;
+    this.currentPeriodTimer = '--:--';
     this.currentMax = 5;
+    this.periodSeconds = 0;
+    this.periodMinutes = 0;
+    this.periodComplete = false;
+
+    this.sessionStarted = false;
     this.sessionEnded = false;
-    this.sessionMinutes = 3;
     this.sessionSeconds = 0;
+    this.sessionMinutes = 3;
+    this.sessionTimer = '--:--';
   }
 }

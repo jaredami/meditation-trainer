@@ -4,10 +4,10 @@
           (click)="handleSuccessFailClick(false)">
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
-  <button class="trainer__begin fade-in" (click)="startSession()" *ngIf="!sessionStarted">
+  <button class="trainer__begin fade-in" (click)="startSession()" *ngIf="!sessionStarted && !firstSessionStarted">
     BEGIN
   </button>
-  <div class="circle__box fade-in" *ngIf="sessionStarted">
+  <div class="circle__box fade-in" *ngIf="firstSessionStarted">
     <div class="circle__wrapper circle__wrapper--right">
       <div class="circle__whole circle__right"
            [ngStyle]="{ 'animation': ('circleRight ' + currentMax + 's linear forwards') }"
@@ -33,7 +33,7 @@
   </button>
 
   <div></div>
-  <div class="timer__container timer-container--session fade-in" *ngIf="sessionStarted">
+  <div class="timer__container timer-container--session fade-in" *ngIf="sessionStarted else newSession">
     <button class="timer__btn" (click)="decreaseSessionLength()">
       <i class="timer__btn-icon material-icons">remove</i>
     </button>
@@ -47,10 +47,12 @@
   <div></div>
 
   <div></div>
-  <button class="success-fail-btn"
-          (click)="startSession()"
-          *ngIf="sessionEnded">
-    Start New Session
-  </button>
+  <ng-template #newSession>
+    <button class="trainer__new-session-btn"
+            (click)="startSession()"
+            *ngIf="sessionEnded">
+      Start New Session
+    </button>
+  </ng-template>
   <div></div>
 </div>
