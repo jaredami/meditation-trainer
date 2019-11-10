@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Stats } from '../models/stats.model';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -35,7 +34,14 @@ export class StatsService {
       ...this._stats,
       totalSessionTime: this._stats.totalSessionTime + 1
     }));
-    console.log(this._stats);
+    this.statsChanges.next(this._stats);
+  }
+
+  addCompletedSession() {
+    this._stats = JSON.parse(JSON.stringify({
+      ...this._stats,
+      completedSessions: this._stats.completedSessions + 1
+    }));
     this.statsChanges.next(this._stats);
   }
 }

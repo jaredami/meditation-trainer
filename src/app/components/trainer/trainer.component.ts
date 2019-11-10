@@ -14,7 +14,7 @@ export class TrainerComponent implements OnInit {
   periodComplete = false;
   sessionStarted = false;
   sessionSeconds = 0;
-  sessionMinutes = 20;
+  sessionMinutes = 3;
   sessionTimer = '--:--';
   startStreakTimer;
   startSessionTimer;
@@ -23,7 +23,6 @@ export class TrainerComponent implements OnInit {
   constructor(private statsService: StatsService) {}
 
   ngOnInit() {
-
   }
 
   increaseSessionLength() {
@@ -31,13 +30,14 @@ export class TrainerComponent implements OnInit {
   }
 
   decreaseSessionLength() {
-    this.sessionMinutes--;
+    if (this.sessionMinutes > 0) {
+      this.sessionMinutes--;
+    }
   }
 
   handleSuccessFailClick(success: boolean) {
     success ? this.currentMax++ : this.currentMax--;
 
-    // reset circle animation
     this.circleAnimationStarted = false;
     setTimeout(() => {
       this.periodSeconds = 0;
@@ -48,8 +48,11 @@ export class TrainerComponent implements OnInit {
   }
 
   startSession() {
-    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
-    this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
+    this.resetValues();
+    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 100);
+    this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 100);
+    // this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
+    // this.startStreakTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
     this.sessionStarted = true;
   }
 
@@ -75,14 +78,25 @@ export class TrainerComponent implements OnInit {
     if (this.sessionMinutes > -1) {
       this.sessionSeconds--;
       if (this.sessionSeconds <= 0) {
-        this.sessionSeconds = 59;
-        this.sessionMinutes--;
-        this.statsService.addTotalSessionTime();
+        if (this.sessionMinutes === 0) {
+          clearInterval(this.startSessionTimer);
+          this.statsService.addCompletedSession();
+        } else {
+          this.sessionSeconds = 59;
+          this.sessionMinutes--;
+          this.statsService.addTotalSessionTime();
+        }
       }
+
       this.sessionTimer =
         (this.sessionMinutes ? (this.sessionMinutes > 9 ? this.sessionMinutes : '0' + this.sessionMinutes) : '00') +
         ':' +
         (this.sessionSeconds > 9 ? this.sessionSeconds : '0' + this.sessionSeconds);
     }
+  }
+
+  private resetValues() {
+    this.sessionMinutes = 3;
+    this.sessionSeconds = 0;
   }
 }
