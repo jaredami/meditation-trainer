@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatsService } from 'src/app/services/stats.service';
 
 @Component({
   selector: 'app-trainer',
@@ -19,7 +20,7 @@ export class TrainerComponent implements OnInit {
   startSessionTimer;
   circleAnimationStarted = true;
 
-  constructor() {}
+  constructor(private statsService: StatsService) {}
 
   ngOnInit() {
 
@@ -76,6 +77,7 @@ export class TrainerComponent implements OnInit {
       if (this.sessionSeconds <= 0) {
         this.sessionSeconds = 59;
         this.sessionMinutes--;
+        this.statsService.addTotalSessionTime();
       }
       this.sessionTimer =
         (this.sessionMinutes ? (this.sessionMinutes > 9 ? this.sessionMinutes : '0' + this.sessionMinutes) : '00') +

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Stats } from 'src/app/models/stats.model';
+import { StatsService } from 'src/app/services/stats.service';
 
 @Component({
   selector: 'app-stats',
@@ -6,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit {
-  totalSessionTime = '00:00';
+  stats: Stats = {
+    completedSessions: 0,
+    totalSessionTime: 0,
+    averageSessionTime: 0,
+    longestSession: 0,
+    longestPeriod: 0,
+  };
 
-  constructor() { }
+  constructor(
+    private statsService: StatsService
+  ) { }
 
   ngOnInit() {
+    this.statsService.statsChanges.subscribe(update => this.stats = update);
   }
 
 }
