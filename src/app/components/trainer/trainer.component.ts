@@ -8,11 +8,12 @@ import { StatsService } from 'src/app/services/stats.service';
 })
 export class TrainerComponent implements OnInit {
   circleAnimationStarted = true;
-  currentPeriodTimer = '--:--';
+
   currentMax = 5;
   periodSeconds = 0;
   periodMinutes = 0;
   periodComplete = false;
+  periodTimer = '--:--';
   startPeriodTimer;
 
   sessionStarted = false;
@@ -66,7 +67,7 @@ export class TrainerComponent implements OnInit {
         this.periodSeconds = 0;
         this.periodMinutes++;
       }
-      this.currentPeriodTimer =
+      this.periodTimer =
         (this.periodMinutes ? (this.periodMinutes > 9 ? this.periodMinutes : '0' + this.periodMinutes) : '00') +
         ':' +
         (this.periodSeconds > 9 ? this.periodSeconds : '0' + this.periodSeconds);
@@ -103,7 +104,7 @@ export class TrainerComponent implements OnInit {
 
   private resetValues() {
     this.circleAnimationStarted = true;
-    this.currentPeriodTimer = '--:--';
+    this.periodTimer = '--:--';
     this.currentMax = 5;
     this.periodSeconds = 0;
     this.periodMinutes = 0;
