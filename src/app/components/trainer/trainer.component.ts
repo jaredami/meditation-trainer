@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingsService } from 'src/app/services/settings.service';
 import { StatsService } from 'src/app/services/stats.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { StatsService } from 'src/app/services/stats.service';
 export class TrainerComponent implements OnInit {
   circleAnimationStarted = true;
 
-  currentMax = 5;
+  currentMax: number;
   periodSeconds = 0;
   periodMinutes = 0;
   periodComplete = false;
@@ -19,15 +20,22 @@ export class TrainerComponent implements OnInit {
   sessionStarted = false;
   sessionEnded = false;
   sessionSeconds = 0;
-  sessionMinutes = 3;
+  sessionMinutes: number;
   sessionTimer = '--:--';
   startSessionTimer;
 
   firstSessionStarted = false;
 
-  constructor(private statsService: StatsService) {}
+  constructor(
+    private settingsService: SettingsService,
+    private statsService: StatsService
+  ) {}
 
   ngOnInit() {
+    this.settingsService.settingsChanges.subscribe((settingsUpdate) => {
+      this.currentMax = settingsUpdate.startingPeriodLength;
+      this.sessionMinutes = settingsUpdate.startingSessionLength;
+    })
   }
 
   increaseSessionLength() {
@@ -53,8 +61,8 @@ export class TrainerComponent implements OnInit {
   }
 
   startSession() {
-    this.firstSessionStarted = true;
     this.resetValues();
+    this.firstSessionStarted = true;
     this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
     this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
     this.sessionStarted = true;
@@ -105,7 +113,7 @@ export class TrainerComponent implements OnInit {
   private resetValues() {
     this.circleAnimationStarted = true;
     this.periodTimer = '--:--';
-    this.currentMax = 5;
+    this.currentMax = this.settingsService.getSettings().startingPeriodLength;
     this.periodSeconds = 0;
     this.periodMinutes = 0;
     this.periodComplete = false;
@@ -113,7 +121,7 @@ export class TrainerComponent implements OnInit {
     this.sessionStarted = false;
     this.sessionEnded = false;
     this.sessionSeconds = 0;
-    this.sessionMinutes = 3;
+    this.sessionMinutes = this.settingsService.getSettings().startingSessionLength;
     this.sessionTimer = '--:--';
   }
 }
