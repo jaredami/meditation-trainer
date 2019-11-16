@@ -8,10 +8,7 @@ import { Settings } from 'src/app/models/settings.model';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  settings: Settings = {
-    startingPeriodLength: 10,
-    startingSessionLength: 10,
-  };
+  settings: Settings;
 
   constructor(
     private settingsService: SettingsService
@@ -19,5 +16,29 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.settingsService.settingsChanges.subscribe(update => this.settings = update);
+  }
+
+  increasePeriodLength() {
+    this.settingsService.setSettings({
+      startingPeriodLength: this.settings.startingPeriodLength + 1
+    });
+  }
+
+  decreasePeriodLength() {
+    this.settingsService.setSettings({
+      startingPeriodLength: this.settings.startingPeriodLength - 1
+    });
+  }
+
+  increaseSessionLength() {
+    this.settingsService.setSettings({
+      startingSessionLength: this.settings.startingSessionLength + 1
+    });
+  }
+
+  decreaseSessionLength() {
+    this.settingsService.setSettings({
+      startingSessionLength: this.settings.startingSessionLength - 1
+    });
   }
 }
