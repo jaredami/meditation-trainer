@@ -1,0 +1,42 @@
+@import '../../variables.scss';
+
+.settings {
+  display: relative;
+  letter-spacing: 2px;
+  margin: 0 auto;
+  padding-top: 4rem;
+  text-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  width: 42vw;
+}
+
+.settings-list {
+  border: 0.5rem solid $color-primary-0;
+  border-radius: 0.5rem;
+  box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
+  font-size: 2rem;
+  list-style-type: none;
+  padding: 2rem 1rem;
+  text-align: end;
+}
+
+.settings-list__item {
+  border-radius: 0.5rem;
+  color: $color-white;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  padding: 1rem 2rem;
+}
+
+.settings-list__item:nth-child(even) {
+  background: lighten($color-dark-gray, 10%);
+}
+
+.settings-list__label {
+  line-height: 1.4;
+}
+
+.settings-list__figure {
+  color: $color-primary-0;
+  font-family: $font-nova;
+  vertical-align: middle;
+}

@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { TrainerComponent } from './components/trainer/trainer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppComponent,
     TrainerComponent,
     StatsComponent,
-    NavbarComponent
+    NavbarComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
