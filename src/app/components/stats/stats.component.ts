@@ -8,13 +8,7 @@ import { StatsService } from 'src/app/services/stats.service';
   styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit {
-  stats: Stats = {
-    completedSessions: 0,
-    totalSessionTime: 0,
-    averageSessionTime: 0,
-    longestSession: 0,
-    longestPeriod: 0,
-  };
+  stats: Stats;
 
   constructor(
     private statsService: StatsService

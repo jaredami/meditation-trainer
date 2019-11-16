@@ -18,27 +18,15 @@ export class SettingsComponent implements OnInit {
     this.settingsService.settingsChanges.subscribe(update => this.settings = update);
   }
 
-  increasePeriodLength() {
-    this.settingsService.setSettings({
-      startingPeriodLength: this.settings.startingPeriodLength + 1
-    });
-  }
-
-  decreasePeriodLength() {
-    this.settingsService.setSettings({
-      startingPeriodLength: this.settings.startingPeriodLength - 1
-    });
-  }
-
-  increaseSessionLength() {
-    this.settingsService.setSettings({
-      startingSessionLength: this.settings.startingSessionLength + 1
-    });
-  }
-
-  decreaseSessionLength() {
-    this.settingsService.setSettings({
-      startingSessionLength: this.settings.startingSessionLength - 1
-    });
+  updateSettings(setting: string, increase: boolean) {
+    if (increase) {
+      this.settingsService.setSettings({
+        [setting]: this.settings[setting] + 1
+      });
+    } else {
+      this.settingsService.setSettings({
+        [setting]: this.settings[setting] - 1
+      });
+    }
   }
 }

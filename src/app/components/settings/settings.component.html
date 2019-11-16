@@ -5,11 +5,11 @@
       <span class="settings-list__figure">{{ settings.startingPeriodLength }}</span>
       <div class="settings-list__btn-container">
         <button class="settings-list__btn"
-                (click)="increasePeriodLength()">
+                (click)="updateSettings('startingPeriodLength', true)">
           <i class="material-icons">keyboard_arrow_up</i>
         </button>
         <button class="settings-list__btn"
-                (click)="decreasePeriodLength()">
+                (click)="updateSettings('startingPeriodLength', false)">
           <i class="material-icons">keyboard_arrow_down</i>
         </button>
       </div>
@@ -19,11 +19,11 @@
       <span class="settings-list__figure">{{ settings.startingSessionLength }}</span>
       <div class="settings-list__btn-container">
         <button class="settings-list__btn"
-               (click)="increaseSessionLength()">
+               (click)="updateSettings('startingSessionLength', true)">
           <i class="material-icons">keyboard_arrow_up</i>
         </button>
         <button class="settings-list__btn"
-                (click)="decreaseSessionLength()">
+                (click)="updateSettings('startingSessionLength', false)">
           <i class="material-icons">keyboard_arrow_down</i>
         </button>
       </div>
