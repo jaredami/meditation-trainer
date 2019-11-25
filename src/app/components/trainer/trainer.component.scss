@@ -23,16 +23,16 @@
   color: $color-white;
   font-family: inherit;
   font-size: 10rem;
-  text-shadow: 0 0 10px $color-dark-gray, 0 0 50px $color-black;
-  transition: transform 500ms ease;
+  text-shadow: 0 0 10px $color-darker-gray, 0 0 50px $color-black;
+  transition: transform 300ms ease;
   &:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 }
 
 .success-fail-btn {
-  background: $color-dark-gray;
+  background: $color-darker-gray;
   border: 0.5rem solid $color-primary-0;
   border-radius: 50%;
   box-shadow: 2px 5px 5px rgba(0,0,0,0.3);
@@ -63,7 +63,7 @@
 }
 
 .timer-container--session {
-  background: $color-dark-gray;
+  background: $color-darker-gray;
   border: 0.5rem solid $color-primary-0;
   border-radius: 1rem;
   grid-template-columns: 1fr 2fr 1fr;

@@ -80,7 +80,7 @@ export class TrainerComponent implements OnInit {
         ':' +
         (this.periodSeconds > 9 ? this.periodSeconds : '0' + this.periodSeconds);
     } else {
-      // BUG: doesn't hit this if currentMax is greater than 60
+      // ! BUG: doesn't hit this if currentMax is greater than 60
       this.periodComplete = true;
       clearInterval(this.startPeriodTimer);
     }
