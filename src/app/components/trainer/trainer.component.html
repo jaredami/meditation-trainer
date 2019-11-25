@@ -1,12 +1,24 @@
-<div class="trainer">
+<div class="trainer fade-in">
   <button class="success-fail-btn"
           [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }"
           (click)="handleSuccessFailClick(false)">
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
-  <button class="trainer__begin fade-in" (click)="startSession()" *ngIf="!sessionStarted && !firstSessionStarted">
-    BEGIN
-  </button>
+
+  <div id="circle-container" *ngIf="!sessionStarted && !firstSessionStarted">
+    <div id="cc">
+    <div class="circle" id="five"></div>
+    <div class="circle" id="four"></div>
+    <div class="circle" id="three"></div>
+    <div class="circle" id="two"></div>
+    <div class="circle" id="one">
+      <button class="trainer__begin" (click)="startSession()">
+        BEGIN
+      </button>
+    </div>
+    </div>
+  </div>
+
   <div class="circle__box fade-in" *ngIf="firstSessionStarted">
     <div class="circle__wrapper circle__wrapper--right">
       <div class="circle__whole circle__right"
@@ -26,6 +38,7 @@
       </div>
     </div>
   </div>
+
   <button class="success-fail-btn"
           [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }"
           (click)="handleSuccessFailClick(true)">

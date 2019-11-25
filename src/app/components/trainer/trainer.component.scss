@@ -22,13 +22,93 @@
   border: none;
   color: $color-white;
   font-family: inherit;
-  font-size: 10rem;
+  font-size: 6rem;
   text-shadow: 0 0 10px $color-darker-gray, 0 0 50px $color-black;
   transition: transform 300ms ease;
   &:hover {
     cursor: pointer;
-    transform: scale(1.02);
   }
+}
+
+body {
+	margin: 0px;
+}
+
+#circle-container {
+	align-items: center;
+	display: flex;
+  justify-content: center;
+  margin-top: 20vh;
+}
+
+.circle {
+	height: 50vh;
+  border-radius: 50%;
+  box-shadow: 5px 0px 20px black;
+	position: absolute;
+	width: 50vh;
+}
+
+#one {
+	align-items: center;
+  background-color: rgba(0,0,225, 0.45);
+	color: white;
+	display: flex;
+	font-family: inherit;
+	font-size: 40px;
+	font-weight: bold;
+	justify-content: center;
+	letter-spacing: 1.5px;
+	transition: 500ms;
+}
+
+#two {
+	background-color: green;
+	transition: 500ms;
+	opacity: 0.5;
+}
+
+#three {
+	background-color: red;
+	transition: 500ms;
+	opacity: 0.5;
+}
+
+#four {
+	background-color: orange;
+	transition: 500ms;
+	opacity: 0.5;
+}
+#five {
+	background-color: green;
+	transition: 500ms;
+	opacity: 0.5;
+}
+
+#cc {
+	border-radius: 50%;
+	height: 50vh;
+  overflow: hidden;
+	position:relative;
+	width: 50vh;
+
+  transition: transform 500ms ease;
+  &:hover {
+    transform: scale(1.1)
+  }
+}
+
+#cc:hover #two {
+	transform: translate(0px, 75px);
+}
+#cc:hover #three {
+	transform: translate(0px, -75px);
+}
+#cc:hover #four {
+	transform: translate(75px, 0px);
+}
+#cc:hover #five {
+	transform: translate(-75px, 0px);
 }
 
 .success-fail-btn {
