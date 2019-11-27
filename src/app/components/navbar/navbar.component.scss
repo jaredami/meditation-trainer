@@ -15,6 +15,7 @@
 
 .navbar__icon {
   padding-right: 0.5rem;
+  color: $color-primary-0;
 }
 
 .navbar__link {
@@ -23,6 +24,7 @@
   padding: 1rem 1rem;
   text-decoration: none;
   transition: all 100ms ease;
+  margin-right: 0;
 }
  
 .navbar__link.active {
@@ -58,9 +60,10 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .navbar__link {
     float: none;
+    margin-right: 0rem;
     text-align: center;
   }
 

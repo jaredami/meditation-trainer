@@ -1,9 +1,5 @@
 @import './variables.scss';
 
-body {
-  margin: 0;
-}
-
 .content {
   background: $color-darker-gray;
   border-top-right-radius: $border-radius-nav;
@@ -18,7 +14,7 @@ body {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
   .content {
     border-radius: 0px;
   }

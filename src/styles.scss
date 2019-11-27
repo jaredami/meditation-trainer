@@ -5,6 +5,16 @@ html {
   font-family: 'Ubuntu', sans-serif;
 }
 
+body {
+  margin: 1rem;
+}
+
 button:focus {
   outline: none;
+}
+
+@media screen and (max-width: 650px) {
+  body {
+    margin: 0;
+  }
 }
