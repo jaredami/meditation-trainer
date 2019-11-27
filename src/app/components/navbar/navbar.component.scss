@@ -19,25 +19,24 @@
 }
 
 .navbar__link {
+  border-bottom-left-radius: $border-radius-nav;
+  border-top-left-radius: $border-radius-nav;
   color: $color-white;
   display: block;
   padding: 1rem 1rem;
   text-decoration: none;
   transition: all 100ms ease;
   margin-right: 0;
+  transition: background 100ms ease;
 }
  
 .navbar__link.active {
   background-color: $color-darker-gray;
-  border-bottom-left-radius: $border-radius-nav;
-  border-top-left-radius: $border-radius-nav;
   color: $color-white;
 }
 
 .navbar__link:hover:not(.active) {
   background-color: $color-light-gray;
-  border-top-left-radius: $border-radius-nav;
-  border-bottom-left-radius: $border-radius-nav;
   color: $color-black;
 }
 
@@ -52,9 +51,6 @@
     float: left;
     margin-right: 1rem;
     padding: 15px;
-  }
-
-  .navbar__link.active, .navbar__link:hover:not(.active) {
     border-bottom-left-radius: 0px;
     border-top-right-radius: $border-radius-nav;
   }
@@ -62,12 +58,9 @@
 
 @media screen and (max-width: 650px) {
   .navbar__link {
+    border-radius: 0px;
     float: none;
     margin-right: 0rem;
     text-align: center;
-  }
-
-  .navbar__link.active, .navbar__link:hover:not(.active) {
-    border-radius: 0px;
   }
 }

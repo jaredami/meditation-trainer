@@ -35,7 +35,7 @@
   border: none;
   color: $color-white;
   font-family: inherit;
-  font-size: 10vw;
+  font-size: 6rem;
   text-shadow: 0 0 10px $color-darker-gray, 0 0 50px $color-black;
   transition: transform 300ms ease;
 
@@ -287,5 +287,9 @@
   .circle, #cc {
     height: 300px;
     width: 300px;
+  }
+
+  .trainer__begin {
+    font-size: 4rem;
   }
 }
