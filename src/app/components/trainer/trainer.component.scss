@@ -17,20 +17,20 @@
   text-shadow: 2px 5px 5px rgba(0,0,0,0.3);
 }
 
-#circle-container {
+.begin-circle__container {
 	align-items: center;
 	display: flex;
   justify-content: center;
 }
 
-.circle {
+.begin-circle {
 	height: 500px;
   border-radius: 50%;
 	position: absolute;
   width: 500px;
 }
 
-.trainer__begin {
+.begin-circle__btn {
   background: transparent;
   border: none;
   color: $color-white;
@@ -175,14 +175,14 @@
   grid-template-columns: 1fr;
 }
 
-.circle__box {
+.period-circle__box {
   height: 400px;
   margin: 50px auto;
   position: relative;
   width: 400px;
 }
 
-.circle__wrapper {
+.period-circle__wrapper {
   height: 400px;
   overflow: hidden;
   position: absolute;
@@ -190,15 +190,15 @@
   width: 200px;
 }
 
-.circle__wrapper--right {
+.period-circle__wrapper--right {
   right: 0;
 }
 
-.circle__wrapper--left {
+.period-circle__wrapper--left {
   left: 0;
 }
 
-.circle__whole {
+.period-circle__whole {
   border: 40px solid transparent;
   border-radius: 50%;
   height: 320px;
@@ -208,14 +208,14 @@
   width: 320px;
 }
 
-.circle__right {
+.period-circle__right {
   border-right: 40px solid $color-primary-0;
   border-top: 40px solid $color-primary-0;
   right: 1px;
   animation: --circle-animation;
 }
 
-.circle__left {
+.period-circle__left {
   border-bottom: 40px solid $color-primary-0;
   border-left: 40px solid $color-primary-0;
   left: 1px;
@@ -284,7 +284,7 @@
     grid-template-columns: 10vw 80vw 10vw;
   }
 
-  .circle, #cc {
+  .begin-circle, #cc {
     height: 300px;
     width: 300px;
   }

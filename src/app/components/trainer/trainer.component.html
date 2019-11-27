@@ -5,23 +5,23 @@
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
 
-  <div id="circle-container" *ngIf="!sessionStarted && !firstSessionStarted">
+  <div class="begin-circle__container" *ngIf="!sessionStarted && !firstSessionStarted">
     <div id="cc">
-    <div class="circle" id="five"></div>
-    <div class="circle" id="four"></div>
-    <div class="circle" id="three"></div>
-    <div class="circle" id="two"></div>
-    <div class="circle" id="one">
-      <button class="trainer__begin" (click)="startSession()">
+    <div class="begin-circle" id="five"></div>
+    <div class="begin-circle" id="four"></div>
+    <div class="begin-circle" id="three"></div>
+    <div class="begin-circle" id="two"></div>
+    <div class="begin-circle" id="one">
+      <button class="begin-circle__btn" (click)="startSession()">
         BEGIN
       </button>
     </div>
     </div>
   </div>
 
-  <div class="circle__box fade-in" *ngIf="firstSessionStarted">
-    <div class="circle__wrapper circle__wrapper--right">
-      <div class="circle__whole circle__right"
+  <div class="period-circle__box fade-in" *ngIf="firstSessionStarted">
+    <div class="period-circle__wrapper period-circle__wrapper--right">
+      <div class="period-circle__whole period-circle__right"
            [ngStyle]="{ 'animation': ('circleRight ' + currentMax + 's linear forwards') }"
            *ngIf="circleAnimationStarted">
       </div>
@@ -31,8 +31,8 @@
         {{ periodTimer }}
       </div>
     </div>
-    <div class="circle__wrapper circle__wrapper--left">
-      <div class="circle__whole circle__left"
+    <div class="period-circle__wrapper period-circle__wrapper--left">
+      <div class="period-circle__whole period-circle__left"
            [ngStyle]="{ 'animation': 'circleLeft ' + currentMax + 's linear forwards' }"
            *ngIf="circleAnimationStarted">
       </div>
