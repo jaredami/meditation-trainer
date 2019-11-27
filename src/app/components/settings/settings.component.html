@@ -1,32 +1,31 @@
-<div class="settings">
-  <ul class="settings-list">
-    <li class="settings-list__item">
-      <span class="settings-list__label">Starting Period Length: </span>
-      <span class="settings-list__figure">{{ settings.startingPeriodLength }}</span>
-      <div class="settings-list__btn-container">
-        <button class="settings-list__btn"
-                (click)="updateSettings('startingPeriodLength', true)">
-          <i class="material-icons">keyboard_arrow_up</i>
-        </button>
-        <button class="settings-list__btn"
-                (click)="updateSettings('startingPeriodLength', false)">
-          <i class="material-icons">keyboard_arrow_down</i>
-        </button>
-      </div>
-    </li>
-    <li class="settings-list__item">
-      <span class="settings-list__label">Session Length: </span>
-      <span class="settings-list__figure">{{ settings.startingSessionLength }}</span>
-      <div class="settings-list__btn-container">
-        <button class="settings-list__btn"
-               (click)="updateSettings('startingSessionLength', true)">
-          <i class="material-icons">keyboard_arrow_up</i>
-        </button>
-        <button class="settings-list__btn"
-                (click)="updateSettings('startingSessionLength', false)">
-          <i class="material-icons">keyboard_arrow_down</i>
-        </button>
-      </div>
-    </li>
-  </ul>
+<div class="settings-container">
+  <div class="settings-card">
+    <p class="settings-card__label">Starting Period Length:</p>
+  
+    <div class="settings-card__figure-container">
+      <button class="settings-card__btn"
+              (click)="updateSettings('startingPeriodLength', false)">
+        <i class="material-icons">keyboard_arrow_down</i>
+      </button>
+      <h2 class="settings-card__figure">{{ settings.startingPeriodLength }}</h2>
+      <button class="settings-card__btn"
+              (click)="updateSettings('startingPeriodLength', true)">
+        <i class="material-icons">keyboard_arrow_up</i>
+      </button>
+    </div>
+  </div>
+  <div class="settings-card">
+    <p class="settings-card__label">Session Length:</p>
+    <div class="settings-card__figure-container">
+      <button class="settings-card__btn"
+              (click)="updateSettings('startingSessionLength', false)">
+        <i class="material-icons">keyboard_arrow_down</i>
+      </button>
+      <h2 class="settings-card__figure">{{ settings.startingSessionLength }}</h2>
+      <button class="settings-card__btn"
+              (click)="updateSettings('startingSessionLength', true)">
+        <i class="material-icons">keyboard_arrow_up</i>
+      </button>
+    </div>
+  </div>
 </div>
