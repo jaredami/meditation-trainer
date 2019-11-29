@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
 import { StatsService } from 'src/app/services/stats.service';
 
@@ -7,7 +7,7 @@ import { StatsService } from 'src/app/services/stats.service';
   templateUrl: './trainer.component.html',
   styleUrls: ['./trainer.component.scss']
 })
-export class TrainerComponent implements OnInit {
+export class TrainerComponent implements OnInit, OnDestroy {
   circleAnimationStarted = true;
 
   currentMaxPeriodLength: number;
@@ -38,6 +38,11 @@ export class TrainerComponent implements OnInit {
       this.sessionMinutes = settingsUpdate.startingSessionLength;
       this.currentSessionLength = this.sessionMinutes;
     });
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.startPeriodTimer);
+    clearInterval(this.startSessionTimer);
   }
 
   increaseSessionLength() {
@@ -96,7 +101,7 @@ export class TrainerComponent implements OnInit {
       this.sessionSeconds--;
       if (this.sessionSeconds <= 0) {
         if (this.sessionMinutes === 0) {
-          this.endSession();
+          this.completeSession();
         } else {
           this.sessionSeconds = 59;
           this.sessionMinutes--;
@@ -126,7 +131,7 @@ export class TrainerComponent implements OnInit {
     this.sessionTimer = '--:--';
   }
 
-  private endSession() {
+  private completeSession() {
     this.sessionStarted = false;
     this.sessionEnded = true;
     clearInterval(this.startPeriodTimer);
