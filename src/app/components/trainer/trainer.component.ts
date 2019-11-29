@@ -35,7 +35,7 @@ export class TrainerComponent implements OnInit {
     this.settingsService.settingsChanges.subscribe((settingsUpdate) => {
       this.currentMax = settingsUpdate.startingPeriodLength;
       this.sessionMinutes = settingsUpdate.startingSessionLength;
-    })
+    });
   }
 
   increaseSessionLength() {
@@ -83,6 +83,7 @@ export class TrainerComponent implements OnInit {
       // ! BUG: doesn't hit this if currentMax is greater than 60
       this.periodComplete = true;
       clearInterval(this.startPeriodTimer);
+      this.statsService.checkForLongestPeriod(this.currentMax);
     }
   }
 
@@ -91,11 +92,7 @@ export class TrainerComponent implements OnInit {
       this.sessionSeconds--;
       if (this.sessionSeconds <= 0) {
         if (this.sessionMinutes === 0) {
-          this.sessionStarted = false;
-          this.sessionEnded = true;
-          clearInterval(this.startPeriodTimer);
-          clearInterval(this.startSessionTimer);
-          this.statsService.addCompletedSession();
+          this.endSession();
         } else {
           this.sessionSeconds = 59;
           this.sessionMinutes--;
@@ -123,5 +120,13 @@ export class TrainerComponent implements OnInit {
     this.sessionSeconds = 0;
     this.sessionMinutes = this.settingsService.getSettings().startingSessionLength;
     this.sessionTimer = '--:--';
+  }
+
+  private endSession() {
+    this.sessionStarted = false;
+    this.sessionEnded = true;
+    clearInterval(this.startPeriodTimer);
+    clearInterval(this.startSessionTimer);
+    this.statsService.addCompletedSession();
   }
 }

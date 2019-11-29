@@ -44,4 +44,14 @@ export class StatsService {
     }));
     this.statsChanges.next(this._stats);
   }
+
+  checkForLongestPeriod(currentMaxPeriodLength) {
+    if (currentMaxPeriodLength > this._stats.longestPeriod) {
+      this._stats = JSON.parse(JSON.stringify({
+        ...this._stats,
+        longestPeriod: currentMaxPeriodLength
+      }));
+    }
+    this.statsChanges.next(this._stats);
+  }
 }

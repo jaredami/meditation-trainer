@@ -4,7 +4,7 @@
   animation: fade-in 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
-.trainer {
+.trainer-container {
   display: grid;
   font-family: $font-nova;
   font-size: 3rem;
@@ -47,7 +47,6 @@
 #one {
 	align-items: center;
   background-color: rgba(0,0,225, 0.45);
-	color: white;
 	display: flex;
 	justify-content: center;
 	transition: 500ms;
@@ -115,8 +114,9 @@
   width: 7rem;
 
   &:hover {
-    filter: brightness(110%);
     animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    border-color: $color-complement-0;
+    filter: brightness(110%);
   }
 }
 
@@ -157,16 +157,18 @@
  border: 0.3rem solid $color-primary-0;
  border-radius: 50%;
  color: $color-white;
+ cursor: pointer;
  padding: 5px;
+ transition: all 300ms;
 
  &:hover {
-  filter: brightness(110%);
-  animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+   animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+   border-color: $color-complement-0;
+   filter: brightness(110%);
  }
 }
 
 .timer__btn-icon {
-  cursor: pointer;
   font-size: 2rem;
 }
 
@@ -280,7 +282,7 @@
 }
 
 @media screen and (max-width: 650px) {
-  .trainer {
+  .trainer-container {
     grid-template-columns: 10vw 80vw 10vw;
   }
 
@@ -289,7 +291,7 @@
     width: 300px;
   }
 
-  .trainer__begin {
+  .begin-circle__btn {
     font-size: 4rem;
   }
 }
