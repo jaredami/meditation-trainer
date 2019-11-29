@@ -10,7 +10,7 @@ import { StatsService } from 'src/app/services/stats.service';
 export class TrainerComponent implements OnInit {
   circleAnimationStarted = true;
 
-  currentMax: number;
+  currentMaxPeriodLength: number;
   periodSeconds = 0;
   periodMinutes = 0;
   periodComplete = false;
@@ -33,7 +33,7 @@ export class TrainerComponent implements OnInit {
 
   ngOnInit() {
     this.settingsService.settingsChanges.subscribe((settingsUpdate) => {
-      this.currentMax = settingsUpdate.startingPeriodLength;
+      this.currentMaxPeriodLength = settingsUpdate.startingPeriodLength;
       this.sessionMinutes = settingsUpdate.startingSessionLength;
     });
   }
@@ -49,7 +49,7 @@ export class TrainerComponent implements OnInit {
   }
 
   handleSuccessFailClick(success: boolean) {
-    success ? this.currentMax++ : this.currentMax--;
+    success ? this.currentMaxPeriodLength++ : this.currentMaxPeriodLength--;
 
     this.circleAnimationStarted = false;
     setTimeout(() => {
@@ -69,7 +69,7 @@ export class TrainerComponent implements OnInit {
   }
 
   private addPeriodTime() {
-    if (this.periodSeconds < this.currentMax) {
+    if (this.periodSeconds < this.currentMaxPeriodLength) {
       this.periodSeconds++;
       if (this.periodSeconds >= 60) {
         this.periodSeconds = 0;
@@ -80,10 +80,10 @@ export class TrainerComponent implements OnInit {
         ':' +
         (this.periodSeconds > 9 ? this.periodSeconds : '0' + this.periodSeconds);
     } else {
-      // ! BUG: doesn't hit this if currentMax is greater than 60
+      // ! BUG: doesn't hit this if currentMaxPeriodLength is greater than 60
       this.periodComplete = true;
       clearInterval(this.startPeriodTimer);
-      this.statsService.checkForLongestPeriod(this.currentMax);
+      this.statsService.checkForLongestPeriod(this.currentMaxPeriodLength);
     }
   }
 
@@ -110,7 +110,7 @@ export class TrainerComponent implements OnInit {
   private resetValues() {
     this.circleAnimationStarted = true;
     this.periodTimer = '--:--';
-    this.currentMax = this.settingsService.getSettings().startingPeriodLength;
+    this.currentMaxPeriodLength = this.settingsService.getSettings().startingPeriodLength;
     this.periodSeconds = 0;
     this.periodMinutes = 0;
     this.periodComplete = false;

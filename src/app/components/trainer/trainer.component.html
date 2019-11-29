@@ -22,7 +22,7 @@
   <div class="period-circle__box fade-in" *ngIf="firstSessionStarted">
     <div class="period-circle__wrapper period-circle__wrapper--right">
       <div class="period-circle__whole period-circle__right"
-           [ngStyle]="{ 'animation': ('circleRight ' + currentMax + 's linear forwards') }"
+           [ngStyle]="{ 'animation': ('circleRight ' + currentMaxPeriodLength + 's linear forwards') }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="period-circle__wrapper period-circle__wrapper--left">
       <div class="period-circle__whole period-circle__left"
-           [ngStyle]="{ 'animation': 'circleLeft ' + currentMax + 's linear forwards' }"
+           [ngStyle]="{ 'animation': 'circleLeft ' + currentMaxPeriodLength + 's linear forwards' }"
            *ngIf="circleAnimationStarted">
       </div>
     </div>
