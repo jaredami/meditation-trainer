@@ -54,4 +54,14 @@ export class StatsService {
     }
     this.statsChanges.next(this._stats);
   }
+
+  checkForLongestSessionCompleted(currentSessionLength) {
+    if (currentSessionLength > this._stats.longestSession) {
+      this._stats = JSON.parse(JSON.stringify({
+        ...this._stats,
+        longestSession: currentSessionLength
+      }));
+    }
+    this.statsChanges.next(this._stats);
+  }
 }

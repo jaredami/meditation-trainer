@@ -17,6 +17,7 @@ export class TrainerComponent implements OnInit {
   periodTimer = '--:--';
   startPeriodTimer;
 
+  currentSessionLength: number;
   sessionStarted = false;
   sessionEnded = false;
   sessionSeconds = 0;
@@ -35,16 +36,19 @@ export class TrainerComponent implements OnInit {
     this.settingsService.settingsChanges.subscribe((settingsUpdate) => {
       this.currentMaxPeriodLength = settingsUpdate.startingPeriodLength;
       this.sessionMinutes = settingsUpdate.startingSessionLength;
+      this.currentSessionLength = this.sessionMinutes;
     });
   }
 
   increaseSessionLength() {
     this.sessionMinutes++;
+    this.currentSessionLength = this.sessionMinutes;
   }
 
   decreaseSessionLength() {
     if (this.sessionMinutes > 0) {
       this.sessionMinutes--;
+      this.currentSessionLength = this.sessionMinutes;
     }
   }
 
@@ -55,7 +59,7 @@ export class TrainerComponent implements OnInit {
     setTimeout(() => {
       this.periodSeconds = 0;
       this.periodComplete = false;
-      this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
+      this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 10);
       this.circleAnimationStarted = true;
     }, 100);
   }
@@ -63,8 +67,8 @@ export class TrainerComponent implements OnInit {
   startSession() {
     this.resetValues();
     this.firstSessionStarted = true;
-    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 1000);
-    this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 1000);
+    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 10);
+    this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 10);
     this.sessionStarted = true;
   }
 
@@ -128,5 +132,6 @@ export class TrainerComponent implements OnInit {
     clearInterval(this.startPeriodTimer);
     clearInterval(this.startSessionTimer);
     this.statsService.addCompletedSession();
+    this.statsService.checkForLongestSessionCompleted(this.currentSessionLength);
   }
 }
