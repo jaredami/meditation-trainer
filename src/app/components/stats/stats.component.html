@@ -1,22 +1,36 @@
 <div class="stats-container">
   <div class="stats-card">
     <p class="stats-card__label">Completed Sessions: </p>
-    <h2 class="stats-card__figure">{{ stats.completedSessions }}</h2>
+    <h2 class="stats-card__figure">
+      {{ stats.completedSessions }}
+    </h2>
   </div>
   <div class="stats-card">
     <p class="stats-card__label">Total Session Time: </p>
-    <h2 class="stats-card__figure">{{ stats.totalSessionTime }}</h2>
+    <h2 class="stats-card__figure">
+      {{ stats.totalSessionTime }}
+      <span class="stats-card__unit">m</span>
+    </h2>
   </div>
   <div class="stats-card">
     <p class="stats-card__label">Average Session Time Daily: </p>
-    <h2 class="stats-card__figure">{{ stats.averageSessionTime }}</h2>
+    <h2 class="stats-card__figure">
+      {{ stats.averageSessionTime }}
+      <span class="stats-card__unit">m/d</span>
+    </h2>
   </div>
   <div class="stats-card">
     <p class="stats-card__label">Longest Session Completed: </p>
-    <h2 class="stats-card__figure">{{ stats.longestSession }}</h2>
+    <h2 class="stats-card__figure">
+      {{ stats.longestSession }}
+      <span class="stats-card__unit">m</span>
+    </h2>
   </div>
   <div class="stats-card">
     <p class="stats-card__label">Longest Period: </p>
-    <h2 class="stats-card__figure">{{ stats.longestPeriod }}</h2>
+    <h2 class="stats-card__figure">
+      {{ stats.longestPeriod }}
+      <span class="stats-card__unit">s</span>
+    </h2>
   </div>
 </div>
