@@ -6,6 +6,11 @@ import { TrainerComponent } from './components/trainer/trainer.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/trainer',
+    pathMatch: 'full'
+  },
+  {
     path: 'trainer',
     component: TrainerComponent
   },
