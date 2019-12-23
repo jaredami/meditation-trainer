@@ -8,6 +8,9 @@ import { Stats } from '../models/stats.model';
 export class StatsService {
   private _stats: Stats;
   readonly statsChanges: BehaviorSubject<Stats>;
+  // TODO: store date of the first login for this
+  private dateStarted = 1576818000000;
+  private today: number = Date.now();
 
   constructor() {
     this._stats = {
@@ -62,6 +65,17 @@ export class StatsService {
         longestSession: currentSessionLength
       }));
     }
+    this.statsChanges.next(this._stats);
+  }
+
+  setAverageMinutesPerDay() {
+    const dateDiff = Math.round((this.dateStarted - this.today) / (1000 * 60 * 60 * 24));
+    const average = this._stats.totalSessionTime / dateDiff;
+
+    this._stats = JSON.parse(JSON.stringify({
+      ...this._stats,
+      averageSessionTime: average
+    }));
     this.statsChanges.next(this._stats);
   }
 }

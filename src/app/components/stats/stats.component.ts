@@ -16,6 +16,7 @@ export class StatsComponent implements OnInit {
 
   ngOnInit() {
     this.statsService.statsChanges.subscribe(update => this.stats = update);
+    this.statsService.setAverageMinutesPerDay();
   }
 
 }
