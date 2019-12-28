@@ -7,7 +7,10 @@
               (click)="updateSettings('startingPeriodLength', false)">
         <i class="material-icons">keyboard_arrow_down</i>
       </button>
-      <h2 class="settings-card__figure">{{ settings.startingPeriodLength }} s</h2>
+      <h2 class="settings-card__figure">
+        {{ settings.startingPeriodLength }}
+        <span class="settings-card__unit">m</span>
+      </h2>
       <button class="settings-card__btn"
               (click)="updateSettings('startingPeriodLength', true)">
         <i class="material-icons">keyboard_arrow_up</i>
@@ -21,7 +24,10 @@
               (click)="updateSettings('startingSessionLength', false)">
         <i class="material-icons">keyboard_arrow_down</i>
       </button>
-      <h2 class="settings-card__figure">{{ settings.startingSessionLength }} m</h2>
+      <h2 class="settings-card__figure">
+        {{ settings.startingSessionLength }}
+        <span class="settings-card__unit">m</span>
+      </h2>
       <button class="settings-card__btn"
               (click)="updateSettings('startingSessionLength', true)">
         <i class="material-icons">keyboard_arrow_up</i>

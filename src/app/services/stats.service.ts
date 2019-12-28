@@ -70,7 +70,7 @@ export class StatsService {
 
   setAverageMinutesPerDay() {
     const dateDiff = Math.round((this.today - this.dateStarted) / (1000 * 60 * 60 * 24));
-    const average = this._stats.totalSessionTime / dateDiff;
+    const average = Math.round(this._stats.totalSessionTime / dateDiff);
 
     this._stats = JSON.parse(JSON.stringify({
       ...this._stats,

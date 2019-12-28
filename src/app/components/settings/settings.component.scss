@@ -37,6 +37,10 @@
   text-shadow: 2px 5px 5px rgba(0,0,0,0.1);
 }
 
+.settings-card__unit {
+  color: $color-primary-0;
+}
+
 .settings {
   display: relative;
   letter-spacing: 2px;
@@ -48,29 +52,23 @@
 
 .settings-card__figure-container {
   display: flex;
+  align-items: center;
 }
 
 .settings-card__btn {
-  background: transparent;
+  background: $color-darker-gray;
   border: none;
-  border-radius: 50%;
-  color: $color-primary-0;
+  border-radius: 0.2rem;
+  color: $color-white;
+  height: 2rem;
+  margin: 0 0.4rem;
+  padding: 0 0.2rem;
   text-shadow: 1px 2px 2px rgba(0,0,0,0.1);
   transition: all 200ms ease;
  
   &:hover {
     color: $color-complement-0;
     cursor: pointer;
-    filter: brightness(150%);
-    animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-  }
-}
-
-@keyframes scale-up-center {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.02);
+    filter: brightness(110%);
   }
 }
