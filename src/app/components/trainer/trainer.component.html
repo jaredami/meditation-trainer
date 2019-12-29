@@ -1,4 +1,5 @@
 <div class="trainer-container fade-in">
+  <!-- Fail Button -->
   <button class="success-fail-btn"
           [ngStyle]="successFailBtnStyle()"
           (click)="handleSuccessFailClick(false)"
@@ -6,6 +7,7 @@
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
 
+  <!-- BEGIN Circle -->
   <div class="begin-circle__container" *ngIf="!firstSessionStarted">
     <div id="cc">
     <div class="begin-circle" id="five"></div>
@@ -20,6 +22,7 @@
     </div>
   </div>
 
+  <!-- Period Circle -->
   <div class="period-circle__box fade-in" *ngIf="firstSessionStarted">
     <div class="period-circle__wrapper period-circle__wrapper--right">
       <div class="period-circle__whole period-circle__right"
@@ -27,6 +30,7 @@
            *ngIf="circleAnimationStarted">
       </div>
     </div>
+    <!-- Period Timer -->
     <div class="timer__container timer-container--period">
       <div class="timer-clock">
         {{ periodTimer }}
@@ -40,6 +44,7 @@
     </div>
   </div>
 
+  <!-- Success Button -->
   <button class="success-fail-btn"
           [ngStyle]="successFailBtnStyle()"
           (click)="handleSuccessFailClick(true)"
@@ -47,6 +52,7 @@
     <i class="success-fail-btn__icon material-icons">check</i>
   </button>
 
+  <!-- Session Timer -->
   <div></div>
   <div class="timer__container timer-container--session fade-in" *ngIf="sessionStarted else newSession">
     <button class="timer__btn" (click)="decreaseSessionLength()">
@@ -61,6 +67,7 @@
   </div>
   <div></div>
 
+  <!-- New Session -->
   <div></div>
   <ng-template #newSession>
     <button class="trainer__new-session-btn"
@@ -70,11 +77,12 @@
     </button>
   </ng-template>
   <div></div>
-
-  <audio #periodAudio>
-    <source src='assets/sounds/kyoto.wav' type="audio/wav">
-  </audio>
-  <audio #sessionAudio>
-    <source src='assets/sounds/bowl_bell.wav' type="audio/wav">
-  </audio>
 </div>
+
+<!-- Sounds -->
+<audio #periodAudio>
+  <source src='assets/sounds/kyoto.wav' type="audio/wav">
+</audio>
+<audio #sessionAudio>
+  <source src='assets/sounds/bowl_bell.wav' type="audio/wav">
+</audio>
