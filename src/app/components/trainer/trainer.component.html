@@ -1,7 +1,8 @@
 <div class="trainer-container fade-in">
   <button class="success-fail-btn"
-          [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }"
-          (click)="handleSuccessFailClick(false)">
+          [ngStyle]="successFailBtnStyle()"
+          (click)="handleSuccessFailClick(false)"
+          [disabled]="!periodComplete">
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
 
@@ -40,8 +41,9 @@
   </div>
 
   <button class="success-fail-btn"
-          [ngStyle]="{ 'opacity': periodComplete ? '1' : '0' }"
-          (click)="handleSuccessFailClick(true)">
+          [ngStyle]="successFailBtnStyle()"
+          (click)="handleSuccessFailClick(true)"
+          [disabled]="!periodComplete">
     <i class="success-fail-btn__icon material-icons">check</i>
   </button>
 
