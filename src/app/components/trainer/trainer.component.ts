@@ -168,7 +168,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
   // Styles
 
   successFailBtnStyle(): { opacity: number, cursor: string } {
-    return this.periodComplete ? { opacity: 1, cursor: 'pointer' } : { opacity: 0, cursor: 'default' };
+    return (this.periodComplete && !this.sessionEnded) ? { opacity: 1, cursor: 'pointer' } : { opacity: 0, cursor: 'default' };
   }
 }
 

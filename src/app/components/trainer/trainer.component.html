@@ -3,7 +3,7 @@
   <button class="success-fail-btn"
           [ngStyle]="successFailBtnStyle()"
           (click)="handleSuccessFailClick(false)"
-          [disabled]="!periodComplete">
+          [disabled]="!periodComplete || sessionEnded">
     <i class="success-fail-btn__icon material-icons">clear</i>
   </button>
 
@@ -48,7 +48,7 @@
   <button class="success-fail-btn"
           [ngStyle]="successFailBtnStyle()"
           (click)="handleSuccessFailClick(true)"
-          [disabled]="!periodComplete">
+          [disabled]="!periodComplete || sessionEnded">
     <i class="success-fail-btn__icon material-icons">check</i>
   </button>
 
