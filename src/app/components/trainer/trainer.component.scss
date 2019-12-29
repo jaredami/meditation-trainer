@@ -18,8 +18,8 @@
 }
 
 .begin-circle__container {
-	align-items: center;
-	display: flex;
+  align-items: center;
+  display: flex;
   justify-content: center;
 }
 
@@ -45,41 +45,41 @@
 }
 
 #one {
-	align-items: center;
+  align-items: center;
   background-color: rgba(0,0,225, 0.45);
-	display: flex;
-	justify-content: center;
-	transition: 500ms;
+  display: flex;
+  justify-content: center;
+  transition: 500ms;
 }
 
 #two {
-	background-color: green;
-	transition: 500ms;
-	opacity: 0.5;
+  background-color: green;
+  transition: 500ms;
+  opacity: 0.5;
 }
 
 #three {
-	background-color: red;
-	transition: 500ms;
-	opacity: 0.5;
+  background-color: red;
+  transition: 500ms;
+  opacity: 0.5;
 }
 
 #four {
-	background-color: orange;
-	transition: 500ms;
-	opacity: 0.5;
+  background-color: orange;
+  transition: 500ms;
+  opacity: 0.5;
 }
 #five {
-	background-color: green;
-	transition: 500ms;
-	opacity: 0.5;
+  background-color: green;
+  transition: 500ms;
+  opacity: 0.5;
 }
 
 #cc {
-	border-radius: 50%;
-	height: 500px;
+  border-radius: 50%;
+  height: 500px;
   overflow: hidden;
-	position:relative;
+  position:relative;
   width: 500px;
   transition: transform 500ms ease;
 
@@ -89,16 +89,16 @@
 }
 
 #cc:hover #two {
-	transform: translate(0px, 75px);
+  transform: translate(0px, 75px);
 }
 #cc:hover #three {
-	transform: translate(0px, -75px);
+  transform: translate(0px, -75px);
 }
 #cc:hover #four {
-	transform: translate(75px, 0px);
+  transform: translate(75px, 0px);
 }
 #cc:hover #five {
-	transform: translate(-75px, 0px);
+  transform: translate(-75px, 0px);
 }
 
 .success-fail-btn {
@@ -152,19 +152,19 @@
 }
 
 .timer__btn {
- background: transparent;
- border: 0.3rem solid $color-primary-0;
- border-radius: 50%;
- color: $color-white;
- cursor: pointer;
- padding: 5px;
- transition: all 300ms;
+  background: transparent;
+  border: 0.3rem solid $color-primary-0;
+  border-radius: 50%;
+  color: $color-white;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 300ms;
 
- &:hover {
-   animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-   border-color: $color-complement-0;
-   filter: brightness(110%);
- }
+  &:hover {
+    animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    border-color: $color-complement-0;
+    filter: brightness(110%);
+  }
 }
 
 .timer__btn-icon {
