@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
 import { StatsService } from 'src/app/services/stats.service';
 
@@ -27,6 +27,9 @@ export class TrainerComponent implements OnInit, OnDestroy {
 
   firstSessionStarted = false;
 
+  @ViewChild('periodAudio') periodAudioRef: ElementRef;
+  @ViewChild('sessionAudio') sessionAudioRef: ElementRef;
+
   constructor(
     private settingsService: SettingsService,
     private statsService: StatsService
@@ -44,6 +47,8 @@ export class TrainerComponent implements OnInit, OnDestroy {
     clearInterval(this.startPeriodTimer);
     clearInterval(this.startSessionTimer);
   }
+
+  // Public methods
 
   increaseSessionLength() {
     this.sessionMinutes++;
@@ -77,6 +82,8 @@ export class TrainerComponent implements OnInit, OnDestroy {
     this.sessionStarted = true;
   }
 
+  // Private methods
+
   private addPeriodTime() {
     if (this.periodSeconds < this.currentMaxPeriodLength) {
       this.periodSeconds++;
@@ -90,9 +97,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
         (this.periodSeconds > 9 ? this.periodSeconds : '0' + this.periodSeconds);
     } else {
       // ! BUG: doesn't hit this if currentMaxPeriodLength is greater than 60
-      this.periodComplete = true;
-      clearInterval(this.startPeriodTimer);
-      this.statsService.checkForLongestPeriod(this.currentMaxPeriodLength);
+      this.completePeriod();
     }
   }
 
@@ -131,7 +136,15 @@ export class TrainerComponent implements OnInit, OnDestroy {
     this.sessionTimer = '--:--';
   }
 
+  private completePeriod() {
+    this.playPeriodEndSound();
+    this.periodComplete = true;
+    clearInterval(this.startPeriodTimer);
+    this.statsService.checkForLongestPeriod(this.currentMaxPeriodLength);
+  }
+
   private completeSession() {
+    this.playSessionEndSound();
     this.sessionStarted = false;
     this.sessionEnded = true;
     clearInterval(this.startPeriodTimer);
@@ -139,4 +152,18 @@ export class TrainerComponent implements OnInit, OnDestroy {
     this.statsService.addCompletedSession();
     this.statsService.checkForLongestSessionCompleted(this.currentSessionLength);
   }
+
+  // Sound methods
+
+  private playPeriodEndSound() {
+    this.periodAudioRef.nativeElement.load();
+    this.periodAudioRef.nativeElement.play();
+  }
+
+  private playSessionEndSound() {
+    this.sessionAudioRef.nativeElement.load();
+    this.sessionAudioRef.nativeElement.play();
+  }
 }
+
+
