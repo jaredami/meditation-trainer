@@ -38,7 +38,8 @@
   <div class="settings-card">
     <p class="settings-card__label">Period End Sound:</p>
     <div class="settings-card__figure-container">
-      <select [(ngModel)]="settings.periodEndSoundSrc"
+      <select class="settings-card__select"
+              [(ngModel)]="settings.periodEndSoundSrc"
               (ngModelChange)="updatePeriodEndSound($event)"
               name="periodEndSound" 
               id="periodEndSound">
