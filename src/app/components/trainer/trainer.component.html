@@ -70,7 +70,7 @@
   <!-- New Session -->
   <div></div>
   <ng-template #newSession>
-    <button class="trainer__new-session-btn"
+    <button class="new-session-btn"
             (click)="startSession()"
             *ngIf="sessionEnded">
       Start New Session
@@ -81,8 +81,8 @@
 
 <!-- Sounds -->
 <audio #periodAudio>
-  <source src='assets/sounds/kyoto.wav' type="audio/wav">
+  <source [src]="periodEndSoundSrc" type="audio/wav">
 </audio>
 <audio #sessionAudio>
-  <source src='assets/sounds/bowl_bell.wav' type="audio/wav">
+  <source [src]="sessionEndSoundSrc" type="audio/wav">
 </audio>

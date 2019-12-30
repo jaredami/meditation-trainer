@@ -27,6 +27,9 @@ export class TrainerComponent implements OnInit, OnDestroy {
 
   firstSessionStarted = false;
 
+  periodEndSoundSrc: string;
+  sessionEndSoundSrc: string;
+
   @ViewChild('periodAudio') periodAudioRef: ElementRef;
   @ViewChild('sessionAudio') sessionAudioRef: ElementRef;
 
@@ -40,6 +43,8 @@ export class TrainerComponent implements OnInit, OnDestroy {
       this.currentMaxPeriodLength = settingsUpdate.startingPeriodLength;
       this.sessionMinutes = settingsUpdate.startingSessionLength;
       this.currentSessionLength = this.sessionMinutes;
+      this.periodEndSoundSrc = settingsUpdate.periodEndSoundSrc;
+      this.sessionEndSoundSrc = settingsUpdate.sessionEndSoundSrc;
     });
   }
 
@@ -123,11 +128,11 @@ export class TrainerComponent implements OnInit, OnDestroy {
 
   private resetValues() {
     this.circleAnimationStarted = true;
-    this.periodTimer = '--:--';
     this.currentMaxPeriodLength = this.settingsService.getSettings().startingPeriodLength;
     this.periodSeconds = 0;
     this.periodMinutes = 0;
     this.periodComplete = false;
+    this.periodTimer = '--:--';
 
     this.sessionStarted = false;
     this.sessionEnded = false;
