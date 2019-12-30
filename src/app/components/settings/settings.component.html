@@ -1,7 +1,6 @@
 <div class="settings-container">
   <div class="settings-card">
     <p class="settings-card__label">Starting Period Length:</p>
-  
     <div class="settings-card__figure-container">
       <button class="settings-card__btn"
               (click)="updateSettings('startingPeriodLength', false)">
@@ -17,6 +16,7 @@
       </button>
     </div>
   </div>
+
   <div class="settings-card">
     <p class="settings-card__label">Session Length:</p>
     <div class="settings-card__figure-container">
@@ -32,6 +32,20 @@
               (click)="updateSettings('startingSessionLength', true)">
         <i class="material-icons">keyboard_arrow_up</i>
       </button>
+    </div>
+  </div>
+
+  <div class="settings-card">
+    <p class="settings-card__label">Period End Sound:</p>
+    <div class="settings-card__figure-container">
+      <select [(ngModel)]="settings.periodEndSoundSrc"
+              (ngModelChange)="updatePeriodEndSound($event)"
+              name="periodEndSound" 
+              id="periodEndSound">
+        <option value="assets/sounds/kyoto.wav">Kyoto</option>
+        <option value="assets/sounds/hand_bells.wav">Hand Bells</option>
+        <option value="assets/sounds/candle_damper.wav">Candle Damper</option>
+      </select>
     </div>
   </div>
 </div>

@@ -9,6 +9,7 @@ import { Settings } from 'src/app/models/settings.model';
 })
 export class SettingsComponent implements OnInit {
   settings: Settings;
+  periodEndSoundSrc: string;
 
   constructor(
     private settingsService: SettingsService
@@ -28,5 +29,11 @@ export class SettingsComponent implements OnInit {
         [setting]: this.settings[setting] - 1
       });
     }
+  }
+
+  updatePeriodEndSound(newSrc) {
+    this.settingsService.setSettings({
+      periodEndSoundSrc: newSrc
+    });
   }
 }
