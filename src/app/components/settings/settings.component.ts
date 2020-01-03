@@ -36,4 +36,10 @@ export class SettingsComponent implements OnInit {
       periodEndSoundSrc: newSrc
     });
   }
+
+  updateSessionEndSound(newSrc) {
+    this.settingsService.setSettings({
+      sessionEndSoundSrc: newSrc
+    });
+  }
 }

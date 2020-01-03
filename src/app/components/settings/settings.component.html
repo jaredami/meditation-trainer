@@ -49,4 +49,20 @@
       </select>
     </div>
   </div>
+
+  <div class="settings-card">
+    <p class="settings-card__label">Session End Sound:</p>
+    <div class="settings-card__figure-container">
+      <select class="settings-card__select"
+              [(ngModel)]="settings.sessionEndSoundSrc"
+              (ngModelChange)="updateSessionEndSound($event)"
+              name="sessionEndSound" 
+              id="sessionEndSound">
+        <option value="assets/sounds/bowl_bell.wav">Bowl Bell</option>
+        <option value="assets/sounds/gong_1.wav">Gong 1</option>
+        <option value="assets/sounds/gong_2.wav">Gong 2</option>
+        <option value="assets/sounds/gong_3.wav">Gong 3</option>
+      </select>
+    </div>
+  </div>
 </div>
