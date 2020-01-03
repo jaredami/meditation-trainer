@@ -3,7 +3,7 @@
     <p class="settings-card__label">Starting Period Length:</p>
     <div class="settings-card__figure-container">
       <button class="settings-card__btn"
-              (click)="updateSettings('startingPeriodLength', false)">
+              (click)="incrementSetting('startingPeriodLength', false)">
         <i class="material-icons">keyboard_arrow_down</i>
       </button>
       <h2 class="settings-card__figure">
@@ -11,7 +11,7 @@
         <span class="settings-card__unit">m</span>
       </h2>
       <button class="settings-card__btn"
-              (click)="updateSettings('startingPeriodLength', true)">
+              (click)="incrementSetting('startingPeriodLength', true)">
         <i class="material-icons">keyboard_arrow_up</i>
       </button>
     </div>
@@ -21,7 +21,7 @@
     <p class="settings-card__label">Session Length:</p>
     <div class="settings-card__figure-container">
       <button class="settings-card__btn"
-              (click)="updateSettings('startingSessionLength', false)">
+              (click)="incrementSetting('startingSessionLength', false)">
         <i class="material-icons">keyboard_arrow_down</i>
       </button>
       <h2 class="settings-card__figure">
@@ -29,7 +29,7 @@
         <span class="settings-card__unit">m</span>
       </h2>
       <button class="settings-card__btn"
-              (click)="updateSettings('startingSessionLength', true)">
+              (click)="incrementSetting('startingSessionLength', true)">
         <i class="material-icons">keyboard_arrow_up</i>
       </button>
     </div>
@@ -66,3 +66,11 @@
     </div>
   </div>
 </div>
+
+<!-- Sounds -->
+<audio #periodAudio>
+  <source [src]="periodEndSoundSrc" type="audio/wav">
+</audio>
+<audio #sessionAudio>
+  <source [src]="sessionEndSoundSrc" type="audio/wav">
+</audio>
