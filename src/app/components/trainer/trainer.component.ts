@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Settings } from 'src/app/models/settings.model';
 import { SettingsService } from 'src/app/services/settings.service';
 import { StatsService } from 'src/app/services/stats.service';
 
@@ -8,24 +9,24 @@ import { StatsService } from 'src/app/services/stats.service';
   styleUrls: ['./trainer.component.scss']
 })
 export class TrainerComponent implements OnInit, OnDestroy {
-  circleAnimationStarted = true;
+  circleAnimationStarted: boolean = true;
 
   currentMaxPeriodLength: number;
-  periodSeconds = 0;
-  periodMinutes = 0;
-  periodComplete = false;
-  periodTimer = '--:--';
-  startPeriodTimer;
+  periodSeconds: number = 0;
+  periodMinutes: number = 0;
+  periodComplete: boolean = false;
+  periodTimer: string = '--:--';
+  startPeriodTimer: number;
 
   currentSessionLength: number;
-  sessionStarted = false;
-  sessionEnded = false;
-  sessionSeconds = 0;
+  sessionStarted: boolean = false;
+  sessionEnded: boolean = false;
+  sessionSeconds: number = 0;
   sessionMinutes: number;
-  sessionTimer = '--:--';
-  startSessionTimer;
+  sessionTimer: string = '--:--';
+  startSessionTimer: number;
 
-  firstSessionStarted = false;
+  firstSessionStarted: boolean = false;
 
   periodEndSoundSrc: string;
   sessionEndSoundSrc: string;
@@ -38,8 +39,8 @@ export class TrainerComponent implements OnInit, OnDestroy {
     private statsService: StatsService
   ) {}
 
-  ngOnInit() {
-    this.settingsService.settingsChanges.subscribe((settingsUpdate) => {
+  ngOnInit(): void {
+    this.settingsService.settingsChanges.subscribe((settingsUpdate: Settings) => {
       this.currentMaxPeriodLength = settingsUpdate.startingPeriodLength;
       this.sessionMinutes = settingsUpdate.startingSessionLength;
       this.currentSessionLength = this.sessionMinutes;
@@ -48,48 +49,48 @@ export class TrainerComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     clearInterval(this.startPeriodTimer);
     clearInterval(this.startSessionTimer);
   }
 
   // Public methods
 
-  increaseSessionLength() {
+  increaseSessionLength(): void {
     this.sessionMinutes++;
     this.currentSessionLength = this.sessionMinutes;
   }
 
-  decreaseSessionLength() {
+  decreaseSessionLength(): void {
     if (this.sessionMinutes > 0) {
       this.sessionMinutes--;
       this.currentSessionLength = this.sessionMinutes;
     }
   }
 
-  handleSuccessFailClick(success: boolean) {
+  handleSuccessFailClick(success: boolean): void {
     success ? this.currentMaxPeriodLength++ : this.currentMaxPeriodLength--;
 
     this.circleAnimationStarted = false;
     setTimeout(() => {
       this.periodSeconds = 0;
       this.periodComplete = false;
-      this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 10);
+      this.startPeriodTimer = window.setInterval(() => { this.addPeriodTime(); }, 10);
       this.circleAnimationStarted = true;
     }, 100);
   }
 
-  startSession() {
+  startSession(): void {
     this.resetValues();
     this.firstSessionStarted = true;
-    this.startSessionTimer = setInterval(() => { this.subtractSessionTime(); }, 10);
-    this.startPeriodTimer = setInterval(() => { this.addPeriodTime(); }, 10);
+    this.startSessionTimer = window.setInterval(() => { this.subtractSessionTime(); }, 10);
+    this.startPeriodTimer = window.setInterval(() => { this.addPeriodTime(); }, 10);
     this.sessionStarted = true;
   }
 
   // Private methods
 
-  private addPeriodTime() {
+  private addPeriodTime(): void {
     if (this.periodSeconds < this.currentMaxPeriodLength) {
       this.periodSeconds++;
       if (this.periodSeconds >= 60) {
@@ -106,7 +107,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  private subtractSessionTime() {
+  private subtractSessionTime(): void {
     if (this.sessionMinutes > -1) {
       this.sessionSeconds--;
       if (this.sessionSeconds <= 0) {
@@ -126,7 +127,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  private resetValues() {
+  private resetValues(): void {
     this.circleAnimationStarted = true;
     this.currentMaxPeriodLength = this.settingsService.getSettings().startingPeriodLength;
     this.periodSeconds = 0;
@@ -141,14 +142,14 @@ export class TrainerComponent implements OnInit, OnDestroy {
     this.sessionTimer = '--:--';
   }
 
-  private completePeriod() {
+  private completePeriod(): void {
     this.playPeriodEndSound();
     this.periodComplete = true;
     clearInterval(this.startPeriodTimer);
     this.statsService.checkForLongestPeriod(this.currentMaxPeriodLength);
   }
 
-  private completeSession() {
+  private completeSession(): void {
     this.playSessionEndSound();
     this.sessionStarted = false;
     this.sessionEnded = true;
@@ -160,12 +161,12 @@ export class TrainerComponent implements OnInit, OnDestroy {
 
   // Sound methods
 
-  private playPeriodEndSound() {
+  private playPeriodEndSound(): void {
     this.periodAudioRef.nativeElement.load();
     this.periodAudioRef.nativeElement.play();
   }
 
-  private playSessionEndSound() {
+  private playSessionEndSound(): void {
     this.sessionAudioRef.nativeElement.load();
     this.sessionAudioRef.nativeElement.play();
   }

@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { SettingsService } from 'src/app/services/settings.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Settings } from 'src/app/models/settings.model';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -20,11 +20,11 @@ export class SettingsComponent implements OnInit {
     private settingsService: SettingsService
   ) { }
 
-  ngOnInit() {
-    this.settingsService.settingsChanges.subscribe(update => this.settings = update);
+  ngOnInit(): void {
+    this.settingsService.settingsChanges.subscribe((update: Settings) => this.settings = update);
   }
 
-  incrementSetting(setting: string, increase: boolean) {
+  incrementSetting(setting: string, increase: boolean): void {
     if (increase) {
       this.settingsService.setSettings({
         [setting]: this.settings[setting] + 1
@@ -36,7 +36,7 @@ export class SettingsComponent implements OnInit {
     }
   }
 
-  updatePeriodEndSound(newSrc) {
+  updatePeriodEndSound(newSrc: string): void {
     this.periodEndSoundSrc = newSrc;
     this.playPeriodEndSound();
     this.settingsService.setSettings({
@@ -44,7 +44,7 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  updateSessionEndSound(newSrc) {
+  updateSessionEndSound(newSrc: string): void {
     this.sessionEndSoundSrc = newSrc;
     this.playSessionEndSound();
     this.settingsService.setSettings({
@@ -52,12 +52,12 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  private playPeriodEndSound() {
+  private playPeriodEndSound(): void {
     this.periodAudioRef.nativeElement.load();
     this.periodAudioRef.nativeElement.play();
   }
 
-  private playSessionEndSound() {
+  private playSessionEndSound(): void {
     this.sessionAudioRef.nativeElement.load();
     this.sessionAudioRef.nativeElement.play();
   }

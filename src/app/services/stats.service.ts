@@ -9,7 +9,7 @@ export class StatsService {
   private _stats: Stats;
   readonly statsChanges: BehaviorSubject<Stats>;
   // TODO: store date of the first login for this
-  private dateStarted = 1576818000000;
+  private dateStarted: number = 1576818000000;
   private today: number = Date.now();
 
   constructor() {
@@ -23,7 +23,7 @@ export class StatsService {
     this.statsChanges = new BehaviorSubject<Stats>(this._stats);
   }
 
-  setStats(value: Partial<Stats>) {
+  setStats(value: Partial<Stats>): void {
     this._stats = JSON.parse(JSON.stringify({ ...this._stats, ...value }));
     this.statsChanges.next(this._stats);
   }
@@ -32,7 +32,7 @@ export class StatsService {
     return JSON.parse(JSON.stringify(this._stats));
   }
 
-  addTotalSessionTime() {
+  addTotalSessionTime(): void {
     this._stats = JSON.parse(JSON.stringify({
       ...this._stats,
       totalSessionTime: this._stats.totalSessionTime + 1
@@ -40,7 +40,7 @@ export class StatsService {
     this.statsChanges.next(this._stats);
   }
 
-  addCompletedSession() {
+  addCompletedSession(): void {
     this._stats = JSON.parse(JSON.stringify({
       ...this._stats,
       completedSessions: this._stats.completedSessions + 1
@@ -48,7 +48,7 @@ export class StatsService {
     this.statsChanges.next(this._stats);
   }
 
-  checkForLongestPeriod(currentMaxPeriodLength) {
+  checkForLongestPeriod(currentMaxPeriodLength: number): void {
     if (currentMaxPeriodLength > this._stats.longestPeriod) {
       this._stats = JSON.parse(JSON.stringify({
         ...this._stats,
@@ -58,7 +58,7 @@ export class StatsService {
     this.statsChanges.next(this._stats);
   }
 
-  checkForLongestSessionCompleted(currentSessionLength) {
+  checkForLongestSessionCompleted(currentSessionLength: number): void {
     if (currentSessionLength > this._stats.longestSession) {
       this._stats = JSON.parse(JSON.stringify({
         ...this._stats,
@@ -68,9 +68,9 @@ export class StatsService {
     this.statsChanges.next(this._stats);
   }
 
-  setAverageMinutesPerDay() {
-    const dateDiff = Math.round((this.today - this.dateStarted) / (1000 * 60 * 60 * 24));
-    const average = Math.round(this._stats.totalSessionTime / dateDiff);
+  setAverageMinutesPerDay(): void {
+    const dateDiff: number = Math.round((this.today - this.dateStarted) / (1000 * 60 * 60 * 24));
+    const average: number = Math.round(this._stats.totalSessionTime / dateDiff);
 
     this._stats = JSON.parse(JSON.stringify({
       ...this._stats,

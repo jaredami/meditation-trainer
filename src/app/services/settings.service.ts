@@ -19,7 +19,7 @@ export class SettingsService {
     this.settingsChanges = new BehaviorSubject<Settings>(this._settings);
   }
 
-  setSettings(value: Partial<Settings>) {
+  setSettings(value: Partial<Settings>): void {
     this._settings = JSON.parse(JSON.stringify({ ...this._settings, ...value }));
     this.settingsChanges.next(this._settings);
   }
