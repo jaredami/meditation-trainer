@@ -10,7 +10,18 @@ import { SettingsService } from 'src/app/services/settings.service';
 export class SettingsComponent implements OnInit {
   settings: Settings;
 
+  periodEndSoundOptions: { value: string, label: string }[] = [
+    { value: 'assets/sounds/kyoto.wav', label: 'Kyoto'},
+    { value: 'assets/sounds/hand_bells.wav', label: 'Hand Bells'},
+    { value: 'assets/sounds/candle_damper.wav', label: 'Candle Damper'},
+  ];
   periodEndSoundSrc: string;
+  sessionEndSoundOptions: { value: string, label: string }[] = [
+    { value: 'assets/sounds/bowl_bell.wav', label: 'Bowl Bell'},
+    { value: 'assets/sounds/gong_1.wav', label: 'Gong 1'},
+    { value: 'assets/sounds/gong_2.wav', label: 'Gong 2'},
+    { value: 'assets/sounds/gong_3.wav', label: 'Gong 3'},
+  ];
   sessionEndSoundSrc: string;
 
   @ViewChild('periodAudio') periodAudioRef: ElementRef;

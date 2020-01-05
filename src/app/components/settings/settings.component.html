@@ -43,9 +43,10 @@
               (ngModelChange)="updatePeriodEndSound($event)"
               name="periodEndSound" 
               id="periodEndSound">
-        <option value="assets/sounds/kyoto.wav">Kyoto</option>
-        <option value="assets/sounds/hand_bells.wav">Hand Bells</option>
-        <option value="assets/sounds/candle_damper.wav">Candle Damper</option>
+        <option *ngFor="let option of periodEndSoundOptions"
+                [value]="option.value">
+          {{ option.label }}
+        </option>
       </select>
     </div>
   </div>
@@ -58,10 +59,10 @@
               (ngModelChange)="updateSessionEndSound($event)"
               name="sessionEndSound" 
               id="sessionEndSound">
-        <option value="assets/sounds/bowl_bell.wav">Bowl Bell</option>
-        <option value="assets/sounds/gong_1.wav">Gong 1</option>
-        <option value="assets/sounds/gong_2.wav">Gong 2</option>
-        <option value="assets/sounds/gong_3.wav">Gong 3</option>
+        <option *ngFor="let option of sessionEndSoundOptions"
+                [value]="option.value">
+          {{ option.label }}
+        </option>
       </select>
     </div>
   </div>
