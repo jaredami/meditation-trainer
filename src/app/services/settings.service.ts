@@ -11,8 +11,8 @@ export class SettingsService {
 
   constructor() {
     this._settings = {
-      periodEndSoundSrc: 'assets/sounds/kyoto.wav',
-      sessionEndSoundSrc: 'assets/sounds/bowl_bell.wav',
+      periodEndSoundSrc: 'assets/sounds/kyoto.mp3',
+      sessionEndSoundSrc: 'assets/sounds/bowl_bell.mp3',
       startingPeriodLength: 10,
       startingSessionLength: 10,
     };
