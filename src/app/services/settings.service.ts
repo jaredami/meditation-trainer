@@ -1,30 +1,42 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Action, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
+import { firestore } from 'firebase';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Settings } from '../models/settings.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
-  private _settings: Settings;
-  readonly settingsChanges: BehaviorSubject<Settings>;
+  private increment: firestore.FieldValue = firestore.FieldValue.increment(1);
+  private decrement: firestore.FieldValue = firestore.FieldValue.increment(-1);
 
-  constructor() {
-    this._settings = {
-      periodEndSoundSrc: 'assets/sounds/kyoto.mp3',
-      sessionEndSoundSrc: 'assets/sounds/bowl_bell.mp3',
-      startingPeriodLength: 10,
-      startingSessionLength: 10,
-    };
-    this.settingsChanges = new BehaviorSubject<Settings>(this._settings);
+  constructor(
+    private afs: AngularFirestore
+  ) {}
+
+  setSettings(settingName: string, settingValue: any): void {
+    const settingsUpdate: { [k: string]: any } = {};
+    settingsUpdate[`settings.${settingName}`] = settingValue;
+
+    this.afs.doc('users/user1').update(settingsUpdate);
   }
 
-  setSettings(value: Partial<Settings>): void {
-    this._settings = JSON.parse(JSON.stringify({ ...this._settings, ...value }));
-    this.settingsChanges.next(this._settings);
+  getSettings(): Observable<Action<DocumentSnapshot<{}>>> {
+    return this.afs.doc('users/user1').snapshotChanges();
   }
 
-  getSettings(): Settings {
-    return JSON.parse(JSON.stringify(this._settings));
+  incrementSetting(settingName: string): void {
+    const settingsUpdate: { [k: string]: firestore.FieldValue } = {};
+    settingsUpdate[`settings.${settingName}`] = this.increment;
+
+    this.afs.doc('users/user1').update(settingsUpdate);
+  }
+
+  decrementSetting(settingName: string): void {
+    const settingsUpdate: { [k: string]: firestore.FieldValue } = {};
+    settingsUpdate[`settings.${settingName}`] = this.decrement;
+
+    this.afs.doc('users/user1').update(settingsUpdate);
   }
 }

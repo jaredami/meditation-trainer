@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Action, DocumentSnapshot } from '@angular/fire/firestore';
 import { Settings } from 'src/app/models/settings.model';
 import { SettingsService } from 'src/app/services/settings.service';
 
@@ -8,7 +9,12 @@ import { SettingsService } from 'src/app/services/settings.service';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  settings: Settings;
+  settings: Settings = {
+    periodEndSoundSrc: 'assets/sounds/kyoto.mp3',
+    sessionEndSoundSrc: 'assets/sounds/bowl_bell.mp3',
+    startingPeriodLength: 10,
+    startingSessionLength: 10,
+  };
 
   periodEndSoundOptions: { value: string, label: string }[] = [
     { value: 'assets/sounds/kyoto.mp3', label: 'Kyoto'},
@@ -32,35 +38,22 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.settingsService.settingsChanges.subscribe((update: Settings) => this.settings = update);
-  }
-
-  incrementSetting(setting: string, increase: boolean): void {
-    if (increase) {
-      this.settingsService.setSettings({
-        [setting]: this.settings[setting] + 1
-      });
-    } else {
-      this.settingsService.setSettings({
-        [setting]: this.settings[setting] - 1
-      });
-    }
+    this.settingsService.getSettings()
+    .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
+      this.settings = actionArray.payload.data().settings;
+    });
   }
 
   updatePeriodEndSound(newSrc: string): void {
     this.periodEndSoundSrc = newSrc;
     this.playPeriodEndSound();
-    this.settingsService.setSettings({
-      periodEndSoundSrc: this.periodEndSoundSrc
-    });
+    this.settingsService.setSettings('periodEndSoundSrc', newSrc);
   }
 
   updateSessionEndSound(newSrc: string): void {
     this.sessionEndSoundSrc = newSrc;
     this.playSessionEndSound();
-    this.settingsService.setSettings({
-      sessionEndSoundSrc: newSrc
-    });
+    this.settingsService.setSettings('sessionEndSoundSrc', newSrc);
   }
 
   private playPeriodEndSound(): void {

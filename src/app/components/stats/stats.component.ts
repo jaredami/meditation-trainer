@@ -23,7 +23,7 @@ export class StatsComponent implements OnInit {
 
   ngOnInit(): void {
     this.statsService.getStats()
-      .subscribe((actionArray: Action<DocumentSnapshot<{ stats: Stats}>>) => {
+      .subscribe((actionArray: Action<DocumentSnapshot<{ stats: Stats }>>) => {
         this.stats = actionArray.payload.data().stats;
       });
     // this.statsService.statsChanges.subscribe((update: Stats) => this.stats = update);

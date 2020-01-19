@@ -1,9 +1,10 @@
 <div class="settings-container">
+  <!-- Starting Period Length -->
   <div class="settings-card">
     <p class="settings-card__label">Starting Period Length:</p>
     <div class="settings-card__figure-container">
       <button class="settings-card__btn"
-              (click)="incrementSetting('startingPeriodLength', false)">
+              (click)="settingsService.decrementSetting('startingPeriodLength')">
         <i class="material-icons">keyboard_arrow_down</i>
       </button>
       <h2 class="settings-card__figure">
@@ -11,17 +12,18 @@
         <span class="settings-card__unit">m</span>
       </h2>
       <button class="settings-card__btn"
-              (click)="incrementSetting('startingPeriodLength', true)">
+              (click)="settingsService.incrementSetting('startingPeriodLength')">
         <i class="material-icons">keyboard_arrow_up</i>
       </button>
     </div>
   </div>
 
+  <!-- Session Length -->
   <div class="settings-card">
     <p class="settings-card__label">Session Length:</p>
     <div class="settings-card__figure-container">
       <button class="settings-card__btn"
-              (click)="incrementSetting('startingSessionLength', false)">
+              (click)="settingsService.decrementSetting('startingSessionLength')">
         <i class="material-icons">keyboard_arrow_down</i>
       </button>
       <h2 class="settings-card__figure">
@@ -29,12 +31,13 @@
         <span class="settings-card__unit">m</span>
       </h2>
       <button class="settings-card__btn"
-              (click)="incrementSetting('startingSessionLength', true)">
+              (click)="settingsService.incrementSetting('startingSessionLength', true)">
         <i class="material-icons">keyboard_arrow_up</i>
       </button>
     </div>
   </div>
 
+  <!-- Period End Sound -->
   <div class="settings-card">
     <p class="settings-card__label">Period End Sound:</p>
     <div class="settings-card__figure-container">
@@ -51,6 +54,7 @@
     </div>
   </div>
 
+  <!-- Session End Sound -->
   <div class="settings-card">
     <p class="settings-card__label">Session End Sound:</p>
     <div class="settings-card__figure-container">
