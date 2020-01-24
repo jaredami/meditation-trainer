@@ -39,9 +39,9 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.settingsService.getSettings()
-    .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
-      this.settings = actionArray.payload.data().settings;
-    });
+      .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
+        this.settings = actionArray.payload.data().settings;
+      });
   }
 
   updatePeriodEndSound(newSrc: string): void {

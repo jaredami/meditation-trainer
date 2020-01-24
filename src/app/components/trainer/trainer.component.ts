@@ -1,7 +1,9 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Action, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { Settings } from 'src/app/models/settings.model';
 import { SettingsService } from 'src/app/services/settings.service';
 import { StatsService } from 'src/app/services/stats.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-trainer',
@@ -35,18 +37,22 @@ export class TrainerComponent implements OnInit, OnDestroy {
   @ViewChild('sessionAudio') sessionAudioRef: ElementRef;
 
   constructor(
+    private afs: AngularFirestore,
     private settingsService: SettingsService,
     private statsService: StatsService
   ) {}
 
   ngOnInit(): void {
-    this.settingsService.settingsChanges.subscribe((settingsUpdate: Settings) => {
-      this.currentMaxPeriodLength = settingsUpdate.startingPeriodLength;
-      this.sessionMinutes = settingsUpdate.startingSessionLength;
-      this.currentSessionLength = this.sessionMinutes;
-      this.periodEndSoundSrc = settingsUpdate.periodEndSoundSrc;
-      this.sessionEndSoundSrc = settingsUpdate.sessionEndSoundSrc;
-    });
+    this.settingsService.getSettings().pipe(take(1))
+      .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
+        const settingsUpdate: Settings = actionArray.payload.data().settings;
+
+        this.currentMaxPeriodLength = settingsUpdate.startingPeriodLength;
+        this.sessionMinutes = settingsUpdate.startingSessionLength;
+        this.currentSessionLength = this.sessionMinutes;
+        this.periodEndSoundSrc = settingsUpdate.periodEndSoundSrc;
+        this.sessionEndSoundSrc = settingsUpdate.sessionEndSoundSrc;
+      });
   }
 
   ngOnDestroy(): void {
@@ -75,7 +81,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.periodSeconds = 0;
       this.periodComplete = false;
-      this.startPeriodTimer = window.setInterval(() => { this.addPeriodTime(); }, 10);
+      this.startPeriodTimer = window.setInterval(() => { this.addPeriodTime(); }, 1000);
       this.circleAnimationStarted = true;
     }, 100);
   }
@@ -83,8 +89,8 @@ export class TrainerComponent implements OnInit, OnDestroy {
   startSession(): void {
     this.resetValues();
     this.firstSessionStarted = true;
-    this.startSessionTimer = window.setInterval(() => { this.subtractSessionTime(); }, 10);
-    this.startPeriodTimer = window.setInterval(() => { this.addPeriodTime(); }, 10);
+    this.startSessionTimer = window.setInterval(() => { this.subtractSessionTime(); }, 1000);
+    this.startPeriodTimer = window.setInterval(() => { this.addPeriodTime(); }, 1000);
     this.sessionStarted = true;
   }
 
@@ -129,7 +135,6 @@ export class TrainerComponent implements OnInit, OnDestroy {
 
   private resetValues(): void {
     this.circleAnimationStarted = true;
-    this.currentMaxPeriodLength = this.settingsService.getSettings().startingPeriodLength;
     this.periodSeconds = 0;
     this.periodMinutes = 0;
     this.periodComplete = false;
@@ -138,8 +143,15 @@ export class TrainerComponent implements OnInit, OnDestroy {
     this.sessionStarted = false;
     this.sessionEnded = false;
     this.sessionSeconds = 0;
-    this.sessionMinutes = this.settingsService.getSettings().startingSessionLength;
     this.sessionTimer = '--:--';
+
+    this.settingsService.getSettings().pipe(take(1))
+    .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
+      const settingsUpdate: Settings = actionArray.payload.data().settings;
+
+      this.currentMaxPeriodLength = settingsUpdate.startingPeriodLength;
+      this.sessionMinutes = settingsUpdate.startingSessionLength;
+    });
   }
 
   private completePeriod(): void {

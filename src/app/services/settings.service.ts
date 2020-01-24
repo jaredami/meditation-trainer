@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { firestore } from 'firebase';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Settings } from '../models/settings.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
