@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Action, DocumentSnapshot } from '@angular/fire/firestore';
 import { Settings } from 'src/app/models/settings.model';
-import { SettingsService } from 'src/app/services/settings.service';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { SettingsService } from 'src/app/services/settings/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -34,11 +35,12 @@ export class SettingsComponent implements OnInit {
   @ViewChild('sessionAudio') sessionAudioRef: ElementRef;
 
   constructor(
+    private firestoreService: FirestoreService,
     private settingsService: SettingsService
   ) { }
 
   ngOnInit(): void {
-    this.settingsService.getSettings()
+    this.firestoreService.getUserDataSnapshot()
       .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
         this.settings = actionArray.payload.data().settings;
       });

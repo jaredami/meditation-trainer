@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Action, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +14,6 @@ export class StatsService {
   constructor(
     private afs: AngularFirestore
   ) {
-  }
-
-  getStats(): Observable<Action<DocumentSnapshot<{}>>> {
-    return this.afs.doc('users/user1').snapshotChanges();
   }
 
   addTotalSessionTime(): void {

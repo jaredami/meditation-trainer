@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Action, DocumentSnapshot } from '@angular/fire/firestore';
 import { Stats } from 'src/app/models/stats.model';
-import { StatsService } from 'src/app/services/stats.service';
+import { StatsService } from 'src/app/services/stats/stats.service';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-stats',
@@ -18,11 +19,12 @@ export class StatsComponent implements OnInit {
   };
 
   constructor(
+    private firestoreService: FirestoreService,
     private statsService: StatsService
   ) { }
 
   ngOnInit(): void {
-    this.statsService.getStats()
+    this.firestoreService.getUserDataSnapshot()
       .subscribe((actionArray: Action<DocumentSnapshot<{ stats: Stats }>>) => {
         this.stats = actionArray.payload.data().stats;
       });

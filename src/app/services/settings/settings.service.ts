@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Action, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +18,6 @@ export class SettingsService {
     settingsUpdate[`settings.${settingName}`] = settingValue;
 
     this.afs.doc('users/user1').update(settingsUpdate);
-  }
-
-  getSettings(): Observable<Action<DocumentSnapshot<{}>>> {
-    return this.afs.doc('users/user1').snapshotChanges();
   }
 
   incrementSetting(settingName: string): void {

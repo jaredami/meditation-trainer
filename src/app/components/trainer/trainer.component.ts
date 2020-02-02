@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Action, AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
-import { Settings } from 'src/app/models/settings.model';
-import { SettingsService } from 'src/app/services/settings.service';
-import { StatsService } from 'src/app/services/stats.service';
 import { take } from 'rxjs/operators';
+import { Settings } from 'src/app/models/settings.model';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { SettingsService } from 'src/app/services/settings/settings.service';
+import { StatsService } from 'src/app/services/stats/stats.service';
 
 @Component({
   selector: 'app-trainer',
@@ -39,12 +40,13 @@ export class TrainerComponent implements OnInit, OnDestroy {
 
   constructor(
     private afs: AngularFirestore,
+    private firestoreService: FirestoreService,
     private settingsService: SettingsService,
     private statsService: StatsService
   ) {}
 
   ngOnInit(): void {
-    this.settingsService.getSettings().pipe(take(1))
+    this.firestoreService.getUserDataSnapshot().pipe(take(1))
       .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
         const settingsUpdate: Settings = actionArray.payload.data().settings;
 
@@ -146,7 +148,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
     this.sessionSeconds = 0;
     this.sessionTimer = '--:--';
 
-    this.settingsService.getSettings().pipe(take(1))
+    this.firestoreService.getUserDataSnapshot().pipe(take(1))
     .subscribe((actionArray: Action<DocumentSnapshot<{ settings: Settings }>>) => {
       const settingsUpdate: Settings = actionArray.payload.data().settings;
 
