@@ -26,7 +26,6 @@ export class StatsComponent implements OnInit {
       .subscribe((actionArray: Action<DocumentSnapshot<{ stats: Stats }>>) => {
         this.stats = actionArray.payload.data().stats;
       });
-    // this.statsService.statsChanges.subscribe((update: Stats) => this.stats = update);
     this.statsService.setAverageMinutesPerDay();
   }
 }

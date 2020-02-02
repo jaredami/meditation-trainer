@@ -11,8 +11,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./trainer.component.scss']
 })
 export class TrainerComponent implements OnInit, OnDestroy {
-  circleAnimationStarted: boolean = true;
-
+  // Period
   currentMaxPeriodLength: number;
   periodSeconds: number = 0;
   periodMinutes: number = 0;
@@ -20,6 +19,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
   periodTimer: string = '--:--';
   startPeriodTimer: number;
 
+  // Session
   currentSessionLength: number;
   sessionStarted: boolean = false;
   sessionEnded: boolean = false;
@@ -28,6 +28,7 @@ export class TrainerComponent implements OnInit, OnDestroy {
   sessionTimer: string = '--:--';
   startSessionTimer: number;
 
+  circleAnimationStarted: boolean = true;
   firstSessionStarted: boolean = false;
 
   periodEndSoundSrc: string;
@@ -186,7 +187,9 @@ export class TrainerComponent implements OnInit, OnDestroy {
   // Styles
 
   successFailBtnStyle(): { opacity: number, cursor: string } {
-    return (this.periodComplete && !this.sessionEnded) ? { opacity: 1, cursor: 'pointer' } : { opacity: 0, cursor: 'default' };
+    return (this.periodComplete && !this.sessionEnded) ?
+      { opacity: 1, cursor: 'pointer' } :
+      { opacity: 0, cursor: 'default' };
   }
 }
 
