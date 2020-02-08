@@ -9,17 +9,9 @@
 
   <!-- BEGIN Circle -->
   <div class="begin-circle__container" *ngIf="!firstSessionStarted">
-    <div id="cc">
-    <div class="begin-circle" id="five"></div>
-    <div class="begin-circle" id="four"></div>
-    <div class="begin-circle" id="three"></div>
-    <div class="begin-circle" id="two"></div>
-    <div class="begin-circle" id="one">
-      <button class="begin-circle__btn" (click)="startSession()">
-        BEGIN
-      </button>
-    </div>
-    </div>
+    <button class="begin-circle__btn" (click)="startSession()">
+      BEGIN
+    </button>
   </div>
 
   <!-- Period Circle -->

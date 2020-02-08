@@ -23,13 +23,6 @@
   justify-content: center;
 }
 
-.begin-circle {
-	height: 500px;
-  border-radius: 50%;
-	position: absolute;
-  width: 500px;
-}
-
 .begin-circle__btn {
   background: transparent;
   border: none;
@@ -37,68 +30,12 @@
   font-family: inherit;
   font-size: 6rem;
   text-shadow: 0 0 10px $color-darker-gray, 0 0 50px $color-black;
-  transition: transform 300ms ease;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-#one {
-  align-items: center;
-  background-color: rgba(0,0,225, 0.45);
-  display: flex;
-  justify-content: center;
-  transition: 500ms;
-}
-
-#two {
-  background-color: green;
-  transition: 500ms;
-  opacity: 0.5;
-}
-
-#three {
-  background-color: red;
-  transition: 500ms;
-  opacity: 0.5;
-}
-
-#four {
-  background-color: orange;
-  transition: 500ms;
-  opacity: 0.5;
-}
-#five {
-  background-color: green;
-  transition: 500ms;
-  opacity: 0.5;
-}
-
-#cc {
-  border-radius: 50%;
-  height: 500px;
-  overflow: hidden;
-  position:relative;
-  width: 500px;
   transition: transform 500ms ease;
 
   &:hover {
-    transform: scale(1.1)
+    transform: scale(1.05);
+    cursor: pointer;
   }
-}
-
-#cc:hover #two {
-  transform: translate(0px, 75px);
-}
-#cc:hover #three {
-  transform: translate(0px, -75px);
-}
-#cc:hover #four {
-  transform: translate(75px, 0px);
-}
-#cc:hover #five {
-  transform: translate(-75px, 0px);
 }
 
 .success-fail-btn {
