@@ -1,6 +1,6 @@
 <div class="trainer-container fade-in">
   <!-- Fail Button -->
-  <button class="success-fail-btn"
+  <button class="success-fail-btn success-fail-btn--fail"
           [ngStyle]="successFailBtnStyle()"
           (click)="handleSuccessFailClick(false)"
           [disabled]="!periodComplete || sessionEnded">
@@ -37,7 +37,7 @@
   </div>
 
   <!-- Success Button -->
-  <button class="success-fail-btn"
+  <button class="success-fail-btn success-fail-btn--success"
           [ngStyle]="successFailBtnStyle()"
           (click)="handleSuccessFailClick(true)"
           [disabled]="!periodComplete || sessionEnded">

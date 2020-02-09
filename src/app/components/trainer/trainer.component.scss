@@ -219,7 +219,9 @@
 
 @media screen and (max-width: 650px) {
   .trainer-container {
-    grid-template-columns: 10vw 80vw 10vw;
+    grid-template-columns: 20vw 60vw 20vw;
+    grid-template-rows: 240px 100px;
+    padding-top: 10vh;
   }
 
   .begin-circle, #cc {
@@ -229,5 +231,66 @@
 
   .begin-circle__btn {
     font-size: 4rem;
+  }
+
+  .success-fail-btn {
+    border: 0.3rem solid $color-primary-0;
+    padding: 0.7rem;
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .success-fail-btn--fail {
+    justify-self: end;
+  }
+
+  .success-fail-btn--success {
+    justify-self: start;
+  }
+
+  .success-fail-btn__icon {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .timer-container--period {
+    font-size: 2rem;
+    left: 42px;
+    top: 64px;
+  }
+
+  .timer-container--session {
+    font-size: 2rem;
+    width: 280px;
+  }
+
+  .timer__btn-icon {
+    font-size: 1rem;
+  }
+
+  .period-circle__box {
+    height: 200px;
+    width: 200px;
+  }
+
+  .period-circle__wrapper {
+    height: 200px;
+    width: 100px;
+  }
+
+  .period-circle__whole {
+    border: 20px solid transparent;
+    height: 160px;
+    width: 160px;
+  }
+
+  .period-circle__right {
+    border-right: 20px solid $color-primary-0;
+    border-top: 20px solid $color-primary-0;
+  }
+  
+  .period-circle__left {
+    border-bottom: 20px solid $color-primary-0;
+    border-left: 20px solid $color-primary-0;
   }
 }
