@@ -33,4 +33,8 @@
       <span class="stats-card__unit">s</span>
     </h2>
   </div>
+
+  <div [hidden]="!sessionTimeChart">
+    <canvas id="canvas">{{ sessionTimeChart }}</canvas>
+  </div>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Action, DocumentSnapshot } from '@angular/fire/firestore';
+import { Chart } from 'chart.js';
 import { Stats } from 'src/app/models/stats.model';
-import { StatsService } from 'src/app/services/stats/stats.service';
 import { FirestoreService } from 'src/app/services/firestore/firestore.service';
+import { StatsService } from 'src/app/services/stats/stats.service';
 
 @Component({
   selector: 'app-stats',
@@ -18,6 +19,9 @@ export class StatsComponent implements OnInit {
     longestPeriod: 0,
   };
 
+  sessionTimeChart: [] = [];
+  dailySessionTimes: number[] = [5, 8 , 10];
+
   constructor(
     private firestoreService: FirestoreService,
     private statsService: StatsService
@@ -29,5 +33,32 @@ export class StatsComponent implements OnInit {
         this.stats = actionArray.payload.data().stats;
       });
     this.statsService.setAverageMinutesPerDay();
+
+    this.sessionTimeChart = new Chart('canvas', {
+      type: 'line',
+      data: {
+        labels: ['label 1', 'label 2', 'label 3'],
+        datasets: [
+          {
+            data: this.dailySessionTimes,
+            borderColor: '#3cba9f',
+            fill: false
+          },
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }],
+        }
+      }
+    });
   }
 }
