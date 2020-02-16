@@ -20,7 +20,8 @@ export class StatsComponent implements OnInit {
   };
 
   sessionTimeChart: [] = [];
-  dailySessionTimes: number[] = [5, 8 , 10];
+  dates: any;
+  sessionTimes: any;
 
   constructor(
     private firestoreService: FirestoreService,
@@ -29,36 +30,52 @@ export class StatsComponent implements OnInit {
 
   ngOnInit(): void {
     this.firestoreService.getUserDataSnapshot()
-      .subscribe((actionArray: Action<DocumentSnapshot<{ stats: Stats }>>) => {
+      .subscribe((actionArray: Action<DocumentSnapshot<any>>) => {
         this.stats = actionArray.payload.data().stats;
+
+        const dailySessionTimes: any = actionArray.payload.data().dailySessionTimes;
+
+        this.sessionTimes = dailySessionTimes.sessionTimes;
+        this.dates = dailySessionTimes.dates.map((timestamp: any) => {
+          let month: number;
+          let day: number;
+
+          const date: Date = new Date(timestamp.seconds * 1000);
+          month = date.getUTCMonth() + 1;
+          day = date.getUTCDate();
+
+          return `${month}/${day}`;
+        });
+
+        this.sessionTimeChart = new Chart('canvas', {
+          type: 'line',
+          data: {
+            labels: this.dates,
+            datasets: [
+              {
+                data: this.sessionTimes,
+                borderColor: '#3cba9f',
+                fill: false
+              },
+            ]
+          },
+          options: {
+            legend: {
+              display: false
+            },
+            scales: {
+              xAxes: [{
+                display: true
+              }],
+              yAxes: [{
+                display: true
+              }],
+            }
+          }
+        });
       });
     this.statsService.setAverageMinutesPerDay();
 
-    this.sessionTimeChart = new Chart('canvas', {
-      type: 'line',
-      data: {
-        labels: ['label 1', 'label 2', 'label 3'],
-        datasets: [
-          {
-            data: this.dailySessionTimes,
-            borderColor: '#3cba9f',
-            fill: false
-          },
-        ]
-      },
-      options: {
-        legend: {
-          display: false
-        },
-        scales: {
-          xAxes: [{
-            display: true
-          }],
-          yAxes: [{
-            display: true
-          }],
-        }
-      }
-    });
+
   }
 }
