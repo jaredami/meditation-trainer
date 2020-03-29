@@ -2,22 +2,13 @@
 
 .content {
   background: $color-darker-gray;
-  border-top-right-radius: $border-radius-nav;
-  margin-left: 250px;
   min-height: 100vh;
-  padding: 5rem;
+  padding: 3rem 7rem;
 }
 
 @media screen and (max-width: 1170px) {
   .content {
-    border-top-left-radius: 0px;
     margin-left: 0;
     padding: 2rem;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .content {
-    border-radius: 0px;
   }
 }

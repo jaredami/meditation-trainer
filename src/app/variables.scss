@@ -3,15 +3,22 @@ $color-primary-0: #4BF2B3;	// Main Primary color */
 $color-complement-0: #FF864F;	// Main Complement color */
 // $color-complement-0: #96a0ff;;	// Main Complement color */
 
-$color-black: #1d252b;
-$color-darker-gray: #29323C;
-$color-dark-gray: #323c48;
-$color-gray: #98A4B9;
-$color-light-gray: #f1f1f1;
+$color-black: #08070a;
+$color-darker-gray: #141418;
+$color-dark-gray: #23232e;
+$color-gray: #b6b6b6;
+$color-light-gray: #ececec;
 $color-white: #f6f6f6;
+
+// $color-black: #1d252b;
+// $color-darker-gray: #29323C;
+// $color-dark-gray: #323c48;
+// $color-gray: #98A4B9;
+// $color-light-gray: #f1f1f1;
+// $color-white: #f6f6f6;
 
 $font-nova: 'Nova Mono', monospace;
 $font-ubuntu: 'Ubuntu', sans-serif;
 $letter-spacing: 2px;
 
-$border-radius-nav: 20px;
+$transition-speed: 600ms;
